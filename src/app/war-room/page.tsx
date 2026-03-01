@@ -80,30 +80,67 @@ export default function WarRoomPage() {
 
         <section className="mt-10 grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
-            <h2 className="text-2xl font-semibold">Desk + Furniture</h2>
+            <h2 className="text-2xl font-semibold">Primary Desk + Furniture</h2>
             <p className="mt-3 text-zinc-300 leading-7">
-              Everything sits on a FlexiSpot 60" top, supported by IKEA Alex storage on both sides:
-              drawers on the right and an Alex cabinet on the left. It keeps the layout clean while
-              hiding cable runs, accessories, and the compact rack footprint.
+              The main desk runs on a FlexiSpot 60" top with IKEA Alex support on both sides:
+              drawers on the right and an Alex cabinet on the left. It keeps the setup stable,
+              clean, and easy to service while still hiding the utility side of the room.
             </p>
             <div className="mt-4 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-              Photo placeholder: desk wide shot (to be added)
+              Photo placeholder: primary desk wide shot (to be added)
             </div>
           </div>
 
           <div className="rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
-            <h2 className="text-2xl font-semibold">10" Server Rack (Cabinet)</h2>
+            <h2 className="text-2xl font-semibold">Second Desk (Mirrored Setup)</h2>
             <p className="mt-3 text-zinc-300 leading-7">
-              The side cabinet houses a compact 10" rack that supports the lab side of the room.
-              This section will track devices, networking roles, and service responsibilities as
-              the War Room evolves.
+              There is a mirrored setup for the second desk: same center cabinet concept,
+              with IKEA Alex drawers on the left. It doubles as my test bench and Aaron’s
+              setup—though when Aaron wants to game and steals my main PC and 49" ultrawide,
+              it quickly becomes my workstation too.
             </p>
-            <div className="mt-4 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-              Photo placeholder: 10" rack front view (to be added)
+            <div className="mt-4 rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4 text-sm text-zinc-200">
+              <p><span className="text-cyan-300">Monitor:</span> LG 1440p ultrawide</p>
+              <p className="mt-2"><span className="text-cyan-300">Also housed here:</span> Bambu Lab A1 3D printer</p>
             </div>
             <div className="mt-3 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-              Photo placeholder: cabinet interior/cable management (to be added)
+              Photo placeholder: second desk + LG ultrawide + printer (to be added)
             </div>
+          </div>
+        </section>
+
+        <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
+          <h2 className="text-2xl font-semibold">Inside the Cabinet: Home + Homelab Core</h2>
+          <p className="mt-3 text-zinc-300 leading-7">
+            Inside the cabinet is the infrastructure layer that quietly runs the house and the home lab.
+            The rack is a 10" DeskGeek 8U unit. I was genuinely surprised by the build quality when it arrived.
+          </p>
+
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
+              <h3 className="font-semibold text-cyan-200">Rack + Server</h3>
+              <ul className="mt-2 space-y-1 text-sm text-zinc-200">
+                <li>10" DeskGeek 8U rack</li>
+                <li>Beelink SER5 Pro (rack-mounted)</li>
+                <li>Custom 3D-printed holder for rack fitment</li>
+              </ul>
+            </div>
+
+            <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
+              <h3 className="font-semibold text-cyan-200">Workloads</h3>
+              <ul className="mt-2 space-y-1 text-sm text-zinc-200">
+                <li>Proxmox host</li>
+                <li>Home Assistant VM</li>
+                <li>Tailscale container</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
+            Photo placeholder: rack front + Beelink mount (to be added)
+          </div>
+          <div className="mt-3 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
+            Photo placeholder: cabinet interior/cable management (to be added)
           </div>
         </section>
       </article>
