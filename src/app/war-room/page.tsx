@@ -191,7 +191,7 @@ export default function WarRoomPage() {
                 <li>Beelink SER5 Pro (rack-mounted)</li>
                 <li>Custom 3D-printed holder for rack fitment</li>
                 <li>M1 Mac mini (16GB) for local LLM workloads</li>
-                <li>Ubiquiti 16-port PoE switch</li>
+                <li>Ubiquiti 16-port PoE managed switch</li>
                 <li>Zigbee adapter</li>
                 <li>Philips Hue smart-light hub</li>
               </ul>
@@ -216,6 +216,46 @@ export default function WarRoomPage() {
           </div>
           <div className="mt-3 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
             Photo placeholder: cabinet interior/cable management (to be added)
+          </div>
+        </section>
+
+        <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
+          <h2 className="text-2xl font-semibold">NAS + Media Stack</h2>
+          <p className="mt-3 text-zinc-300 leading-7">
+            The War Room also includes a dedicated NAS built for media, storage, and self-hosted services.
+            It runs Unraid as the operating system and acts as the backbone for entertainment and private cloud workflows.
+          </p>
+
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
+              <h3 className="font-semibold text-cyan-200">NAS Hardware</h3>
+              <ul className="mt-2 space-y-1 text-sm text-zinc-200">
+                <li>Case: Jonsbo N2 mITX (5-bay)</li>
+                <li>Motherboard: mITX board</li>
+                <li>CPU: Intel 11th Gen i7</li>
+                <li>RAM: 32GB DDR4</li>
+                <li>OS Drive: 256GB SSD</li>
+                <li>Array Drives: 2 x 8TB HDD</li>
+                <li>OS: Unraid</li>
+              </ul>
+            </div>
+
+            <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
+              <h3 className="font-semibold text-cyan-200">Services</h3>
+              <ul className="mt-2 space-y-1 text-sm text-zinc-200">
+                <li>Plex</li>
+                <li>Radarr</li>
+                <li>Sonarr</li>
+                <li>Prowlarr</li>
+                <li>qBittorrent</li>
+                <li>Cloudflare integration</li>
+                <li>Nextcloud for personal cloud storage</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
+            Photo placeholder: NAS hardware (Jonsbo N2) (to be added)
           </div>
         </section>
       </article>
