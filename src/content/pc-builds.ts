@@ -142,13 +142,13 @@ export const pcBuilds: PcBuild[] = [
       "/images/pc-builds/steam-machine-2025-5600x-6600/05.jpg"
     ],
     specs: {
-      motherboard: "TBD",
+      motherboard: "ASRock DeskMeet AM4",
       processor: "Ryzen 5 5600X",
-      ram: "TBD",
+      ram: "16GB DDR4",
       gpu: "Radeon RX 6600",
-      psu: "TBD",
-      case: "SFF / Steam-machine style enclosure",
-      cooler: "TBD",
+      psu: "DeskMeet included 500W PSU",
+      case: "ASRock DeskMeet",
+      cooler: "Thermalright low-profile cooler",
       details:
         "Configured for couch play with Bazzite Deck image and clean controller navigation.",
     },
