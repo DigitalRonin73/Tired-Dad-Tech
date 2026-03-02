@@ -117,13 +117,13 @@ export const pcBuilds: PcBuild[] = [
       "/images/pc-builds/christmas-build-7500f-9060xt/03.jpg"
     ],
     specs: {
-      motherboard: "TBD",
+      motherboard: "MSI B850",
       processor: "Ryzen 5 7500F",
-      ram: "TBD",
-      gpu: "ASUS RX 9060 XT",
-      psu: "TBD",
+      ram: "32GB DDR5 CL32 6000MHz",
+      gpu: "ASUS RX 9060 XT 16GB",
+      psu: "Thermalright 750W 80+ Gold",
       case: "PC Coolers case",
-      cooler: "TBD",
+      cooler: "DeepCool AK500 Digital",
       details:
         "Family-focused holiday build with balanced performance and clean presentation.",
     },
