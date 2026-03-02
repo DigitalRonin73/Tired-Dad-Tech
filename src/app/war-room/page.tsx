@@ -254,8 +254,19 @@ export default function WarRoomPage() {
             </div>
           </div>
 
-          <div className="mt-4 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-            Photo placeholder: NAS hardware (Jonsbo N2) (to be added)
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <Image src="/images/war-room/nas/01.jpg" alt="NAS internal drive backplane and wiring" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+            </div>
+            <div className="relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <Image src="/images/war-room/nas/02.jpg" alt="NAS motherboard and cooling assembly" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+            </div>
+            <div className="relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <Image src="/images/war-room/nas/03.jpg" alt="Completed NAS chassis on desk" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+            </div>
+            <div className="relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <Image src="/images/war-room/nas/04.jpg" alt="NAS project components and parts" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+            </div>
           </div>
         </section>
       </article>
