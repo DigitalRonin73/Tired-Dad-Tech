@@ -14,17 +14,18 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "jarvis-self-hosted-assistant",
-    title: "Jarvis: Self-Hosted AI Assistant",
+    title: "Jarvis: The Private Voice Assistant",
     category: "Project",
     status: "In Progress",
     summary:
-      "A custom self-hosted voice assistant running on Raspberry Pi with Jabra Speak 40 hardware integration.",
-    stack: ["Raspberry Pi", "Jabra Speak 40", "Self-Hosted AI", "Voice Interface"],
+      "A fully local, privacy-first alternative to cloud voice assistants where voice data stays on the home network.",
+    stack: ["Home Assistant", "Proxmox", "Mac mini M1", "Raspberry Pi", "openWakeWord"],
     publishedAt: "2026-03-01",
     body: [
-      "Jarvis is my custom, self-hosted AI assistant project focused on local-first control and practical voice interaction.",
-      "This build uses a Jabra Speak 40 speakerphone paired with a Raspberry Pi as the core hardware platform.",
-      "I’ll continue adding architecture details, software stack notes, and lessons learned as the project evolves.",
+      "This project is a fully local, privacy-first alternative to cloud-based voice assistants. By hosting intelligence on-site, voice data never leaves the home network while still delivering modern AI response speeds.",
+      "Infrastructure is distributed for performance and reliability: a Proxmox VM running Home Assistant acts as the central command center; a Mac mini (M1, 16GB RAM) provides local LLM compute; and a Raspberry Pi serves as the physical interface in a custom 3D-printed mount.",
+      "Core technologies include local LLM integration for natural language understanding, openWakeWord for on-device 'Hey Jarvis' wake detection, and a Jabra Speak 4 for microphone pickup and response output.",
+      "Key benefits: near-zero latency from local processing, full data sovereignty for voice and smart-home telemetry, and sustainable reuse of existing hardware into a high-performance automation suite.",
     ],
     imageUrls: [
       "/images/projects/jarvis/01.jpg",
