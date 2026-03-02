@@ -179,6 +179,8 @@ export default function WarRoomPage() {
           <p className="mt-3 text-zinc-300 leading-7">
             Inside the cabinet is the infrastructure layer that quietly runs the house and the home lab.
             The rack is a 10" DeskGeek 8U unit. I was genuinely surprised by the build quality when it arrived.
+            For thermal control, I cut a rear vent opening and installed a Noctua fan converted to USB power,
+            so it can be powered directly from available USB ports in-cabinet.
           </p>
 
           <div className="mt-5 grid gap-4 md:grid-cols-2">
@@ -203,6 +205,8 @@ export default function WarRoomPage() {
                 <li>Tailscale container</li>
                 <li>Local LLM inference on dedicated Mac mini node</li>
                 <li>Lighting + Zigbee coordination through Hue/Zigbee stack</li>
+                <li>Aqara temperature sensor integrated with Home Assistant for rack temp monitoring</li>
+                <li>Rack cooling workflow driven by thermal awareness and active fan exhaust</li>
               </ul>
             </div>
           </div>
