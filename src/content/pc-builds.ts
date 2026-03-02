@@ -184,7 +184,12 @@ export const pcBuilds: PcBuild[] = [
     summary:
       "Compact mITX build focused on airflow challenges and real-world small-form-factor compromises.",
     videoUrl: "https://www.youtube.com/watch?v=FQNJZFXnXYI",
-    imageUrls: [placeholderImage],
+    imageUrls: [
+      "/images/pc-builds/ch160-mini-itx-build/01.jpg",
+      "/images/pc-builds/ch160-mini-itx-build/02.jpg",
+      "/images/pc-builds/ch160-mini-itx-build/03.jpg",
+      "/images/pc-builds/ch160-mini-itx-build/04.jpg"
+    ],
     specs: {
       motherboard: "mITX board (TBD)",
       processor: "Ryzen 5 7500F",
