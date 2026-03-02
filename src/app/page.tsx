@@ -21,9 +21,26 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#070b12]/35 via-[#070b12]/60 to-[#070b12]/92" />
       </div>
 
+      <div className="sticky top-3 z-40 mx-auto mt-3 w-[calc(100%-1rem)] max-w-6xl px-2 sm:px-0">
+        <div className="top-nav-shell flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+          <Link className="nav-pill nav-pill-strong" href="/war-room">
+            <span>The War Room</span>
+            <span aria-hidden>↗</span>
+          </Link>
+          <Link className="nav-pill nav-pill-strong" href="/vault">
+            <span>The Project Vault</span>
+            <span aria-hidden>↗</span>
+          </Link>
+          <Link className="nav-pill nav-pill-strong" href="/pc-builds">
+            <span>PC Builds</span>
+            <span aria-hidden>↗</span>
+          </Link>
+        </div>
+      </div>
+
       <section className="reveal-section reveal-delay-1 relative isolate border-b border-cyan-400/20">
-        <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-28">
-          <nav className="mb-8 flex flex-col gap-4 text-sm text-zinc-200">
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-24">
+          <div className="mb-8">
             <Image
               src="/images/brand-banner.jpg"
               alt="Tired Dad Tech banner"
@@ -32,21 +49,7 @@ export default async function HomePage() {
               className="h-auto max-h-[180px] w-full rounded-xl border border-cyan-300/40 object-cover shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:max-h-[200px]"
               priority
             />
-            <div className="flex flex-wrap gap-3 sm:justify-center">
-              <Link className="nav-pill" href="/war-room">
-                <span>The War Room</span>
-                <span aria-hidden>↗</span>
-              </Link>
-              <Link className="nav-pill" href="/vault">
-                <span>The Project Vault</span>
-                <span aria-hidden>↗</span>
-              </Link>
-              <Link className="nav-pill" href="/pc-builds">
-                <span>PC Builds</span>
-                <span aria-hidden>↗</span>
-              </Link>
-            </div>
-          </nav>
+          </div>
 
           <div className="mb-6 flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] text-cyan-300">
             <span className="rounded-full border border-cyan-400/40 px-3 py-1">Homelab</span>
@@ -68,14 +71,22 @@ export default async function HomePage() {
               href="/vault"
               className="cta-sheen rounded-xl bg-cyan-400 px-5 py-3 text-center font-medium text-[#07121f] hover:bg-cyan-300"
             >
-              Explore the Project Vault
+              Get the details
             </Link>
             <Link
               href="/war-room"
               className="cta-sheen rounded-xl border border-cyan-300/40 px-5 py-3 text-center font-medium text-cyan-100 hover:bg-cyan-400/10"
             >
-              Enter The War Room
+              Step into the War Room
             </Link>
+            <a
+              href="https://www.youtube.com/@TiredDadTech"
+              target="_blank"
+              rel="noreferrer"
+              className="cta-sheen rounded-xl border border-amber-300/40 px-5 py-3 text-center font-medium text-amber-100 hover:bg-amber-400/10"
+            >
+              Join the tired ranks
+            </a>
           </div>
         </div>
       </section>
@@ -144,11 +155,11 @@ export default async function HomePage() {
         </aside>
       </section>
 
-      <section className="reveal-section reveal-delay-3 mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20">
+      <section className="reveal-section reveal-delay-3 mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-2xl font-semibold">Featured Projects</h2>
           <Link className="text-cyan-300 hover:text-cyan-200" href="/vault">
-            View all →
+            Get the details →
           </Link>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
@@ -167,6 +178,18 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      <footer className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+        <div className="rounded-2xl border border-cyan-400/20 bg-[#0a1220]/80 p-5 text-zinc-300">
+          <p className="text-sm uppercase tracking-[0.16em] text-cyan-300">Tired Dad Note</p>
+          <p className="mt-2 text-sm leading-6">
+            Built between real life, late nights, and coffee refills. Not perfect. Always improving.
+          </p>
+          <p className="mt-3 text-cyan-200/80" style={{ fontFamily: "'Comic Sans MS', 'Marker Felt', cursive" }}>
+            ~~~ keep building, keep shipping ~~~
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }
