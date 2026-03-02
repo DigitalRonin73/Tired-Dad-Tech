@@ -110,6 +110,27 @@ export default function WarRoomPage() {
         </section>
 
         <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
+          <h2 className="text-2xl font-semibold">Office Overview: Studio + Workshop</h2>
+          <p className="mt-3 text-zinc-300 leading-7">
+            The War Room is more than a desk setup. It doubles as a YouTube studio and a working
+            project space for builds, repairs, testing, and experiments. The room is designed to be
+            practical on camera and efficient off camera.
+          </p>
+          <p className="mt-3 text-zinc-300 leading-7">
+            The <em>Great Wave of Kanagawa</em> “poster” also functions as acoustic treatment,
+            helping tame reflections during voice recordings. A dedicated FlexiSpot standing desk is
+            used for teardown/build sessions, project testing, and filming. It is usually staged with
+            a soldering mat where 3D-print assemblies and electronics work happen.
+          </p>
+          <div className="mt-4 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
+            Photo placeholder: Great Wave of Kanagawa acoustic panel wall (to be added)
+          </div>
+          <div className="mt-3 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
+            Photo placeholder: FlexiSpot filming/build desk with soldering mat (to be added)
+          </div>
+        </section>
+
+        <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
           <h2 className="text-2xl font-semibold">Inside the Cabinet: Home + Homelab Core</h2>
           <p className="mt-3 text-zinc-300 leading-7">
             Inside the cabinet is the infrastructure layer that quietly runs the house and the home lab.
@@ -118,20 +139,26 @@ export default function WarRoomPage() {
 
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
-              <h3 className="font-semibold text-cyan-200">Rack + Server</h3>
+              <h3 className="font-semibold text-cyan-200">Rack + Core Hardware</h3>
               <ul className="mt-2 space-y-1 text-sm text-zinc-200">
                 <li>10" DeskGeek 8U rack</li>
                 <li>Beelink SER5 Pro (rack-mounted)</li>
                 <li>Custom 3D-printed holder for rack fitment</li>
+                <li>M1 Mac mini (16GB) for local LLM workloads</li>
+                <li>Ubiquiti 16-port PoE switch</li>
+                <li>Zigbee adapter</li>
+                <li>Philips Hue smart-light hub</li>
               </ul>
             </div>
 
             <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
-              <h3 className="font-semibold text-cyan-200">Workloads</h3>
+              <h3 className="font-semibold text-cyan-200">Workloads + Services</h3>
               <ul className="mt-2 space-y-1 text-sm text-zinc-200">
                 <li>Proxmox host</li>
                 <li>Home Assistant VM</li>
                 <li>Tailscale container</li>
+                <li>Local LLM inference on dedicated Mac mini node</li>
+                <li>Lighting + Zigbee coordination through Hue/Zigbee stack</li>
               </ul>
             </div>
           </div>
