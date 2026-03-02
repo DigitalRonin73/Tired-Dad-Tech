@@ -208,7 +208,11 @@ export const pcBuilds: PcBuild[] = [
     summary:
       "Father-son AM5 build targeting practical 1440p performance without overspending.",
     videoUrl: "https://www.youtube.com/watch?v=_6sgajp1-Sw",
-    imageUrls: [placeholderImage],
+    imageUrls: [
+      "/images/pc-builds/am5-build-with-my-son/01.jpg",
+      "/images/pc-builds/am5-build-with-my-son/02.jpg",
+      "/images/pc-builds/am5-build-with-my-son/03.jpg"
+    ],
     specs: {
       motherboard: "MSI B650M (mATX AM5)",
       processor: "Ryzen 5 7500F",
@@ -279,6 +283,30 @@ export const pcBuilds: PcBuild[] = [
       cooler: "TBD",
       details:
         "Bazzite-focused upgrade to test how far older hardware can be pushed in modern gaming. More final spec details can be added as needed.",
+    },
+  },
+
+  {
+    slug: "am4-mitx-metalfish-t60",
+    title: "AM4 mITX | Metal Fish T60 SFF",
+    summary:
+      "Compact SFF build packing a Ryzen 9 3900X into a Metal Fish T60 mITX case.",
+    videoUrl: "https://www.youtube.com/watch?v=L15_5LZN6BY",
+    imageUrls: [
+      "/images/pc-builds/am4-mitx-metalfish-t60/01.jpg",
+      "/images/pc-builds/am4-mitx-metalfish-t60/02.jpg",
+      "/images/pc-builds/am4-mitx-metalfish-t60/03.jpg"
+    ],
+    specs: {
+      motherboard: "AM4 mITX motherboard (model TBD)",
+      processor: "Ryzen 9 3900X",
+      ram: "TBD",
+      gpu: "TBD",
+      psu: "TBD",
+      case: "Metal Fish T60 mITX",
+      cooler: "TBD",
+      details:
+        "SFF build completed with Aaron. 12-core/24-thread AM4 platform packed into a compact Metal Fish chassis.",
     },
   },
 
