@@ -131,6 +131,50 @@ export default function WarRoomPage() {
         </section>
 
         <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
+          <h2 className="text-2xl font-semibold">On-the-Go Rig: ThinkPad L490</h2>
+          <p className="mt-3 text-zinc-300 leading-7">
+            This is the portable side of the War Room: a Lenovo ThinkPad L490 picked up for about $200
+            and upgraded immediately for real daily use. Storage was moved to a 1TB SSD, memory was
+            expanded to 32GB RAM, and the keyboard was swapped from a Japanese layout to an English layout.
+            It now runs Linux (Zorin OS) as a dependable on-the-go test and utility machine.
+          </p>
+
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
+              <h3 className="font-semibold text-cyan-200">Quick Specs</h3>
+              <ul className="mt-2 space-y-1 text-sm text-zinc-200">
+                <li>Model: Lenovo ThinkPad L490</li>
+                <li>Purchase: ~$200</li>
+                <li>Storage: 1TB SSD upgrade</li>
+                <li>Memory: 32GB RAM upgrade</li>
+                <li>Keyboard: JP layout swapped to English layout</li>
+                <li>OS: Linux (Zorin OS)</li>
+              </ul>
+            </div>
+
+            <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
+              <h3 className="font-semibold text-cyan-200">Use Case</h3>
+              <p className="mt-2 text-sm text-zinc-200 leading-6">
+                Portable bench for troubleshooting, software testing, and lightweight project work away
+                from the main desk setup.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <Image src="/images/war-room/mobile-rig/01.jpg" alt="ThinkPad L490 hardware upgrade detail" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
+            </div>
+            <div className="relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <Image src="/images/war-room/mobile-rig/02.jpg" alt="ThinkPad L490 open chassis" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
+            </div>
+            <div className="relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <Image src="/images/war-room/mobile-rig/03.jpg" alt="ThinkPad L490 running Zorin OS" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
           <h2 className="text-2xl font-semibold">Inside the Cabinet: Home + Homelab Core</h2>
           <p className="mt-3 text-zinc-300 leading-7">
             Inside the cabinet is the infrastructure layer that quietly runs the house and the home lab.
