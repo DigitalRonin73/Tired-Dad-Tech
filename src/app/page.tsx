@@ -6,6 +6,11 @@ import { getLatestYouTubeVideo } from "@/lib/youtube";
 export default async function HomePage() {
   const latestVideo = await getLatestYouTubeVideo();
   const featured = projects.slice(0, 3);
+  const fallbackVideo = {
+    videoId: "WO9IS3G7tF0",
+    title: "Latest upload (fallback)",
+    url: "https://www.youtube.com/@TiredDadTech/videos",
+  };
 
   return (
     <main className="tech-bg relative z-0 min-h-screen bg-[#070b12] text-zinc-100">
@@ -99,33 +104,36 @@ export default async function HomePage() {
           <div className="relative z-10">
             <h2 className="mb-4 text-2xl font-semibold">Latest YouTube Upload</h2>
 
-            {latestVideo ? (
-              <>
-                <div className="aspect-video overflow-hidden rounded-xl border border-zinc-700/90 shadow-[0_0_0_1px_rgba(34,211,238,0.08)]">
-                  <iframe
-                    className="h-full w-full"
-                    src={`https://www.youtube.com/embed/${latestVideo.videoId}`}
-                    title={latestVideo.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <p className="mt-3 text-lg font-medium">{latestVideo.title}</p>
-                <a
-                  className="mt-2 inline-block text-cyan-300 hover:text-cyan-200"
-                  href={latestVideo.url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Watch on YouTube →
-                </a>
-              </>
-            ) : (
-              <div className="rounded-xl border border-amber-400/40 bg-amber-500/10 p-4 text-amber-200">
-                Could not auto-load latest video yet. Set <code>YOUTUBE_CHANNEL_ID</code> in
-                environment for guaranteed feed detection.
-              </div>
-            )}
+            {(() => {
+              const video = latestVideo ?? fallbackVideo;
+              return (
+                <>
+                  <div className="aspect-video overflow-hidden rounded-xl border border-zinc-700/90 shadow-[0_0_0_1px_rgba(34,211,238,0.08)]">
+                    <iframe
+                      className="h-full w-full"
+                      src={`https://www.youtube.com/embed/${video.videoId}`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <p className="mt-3 text-lg font-medium">{latestVideo?.title ?? video.title}</p>
+                  <a
+                    className="mt-2 inline-block text-cyan-300 hover:text-cyan-200"
+                    href={latestVideo?.url ?? video.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Watch on YouTube →
+                  </a>
+                  {!latestVideo ? (
+                    <p className="mt-2 text-xs text-amber-200/90">
+                      Feed fallback active — showing channel latest known video.
+                    </p>
+                  ) : null}
+                </>
+              );
+            })()}
           </div>
         </article>
 
