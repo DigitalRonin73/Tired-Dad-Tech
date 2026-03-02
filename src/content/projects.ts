@@ -60,7 +60,9 @@ export const projects: Project[] = [
       "/images/projects/bc250-couch-gaming/07.jpg",
       "/images/projects/bc250-couch-gaming/08.jpg",
       "/images/projects/bc250-couch-gaming/09.jpg",
-      "/images/projects/bc250-couch-gaming/10.jpg"
+      "/images/projects/bc250-couch-gaming/10.jpg",
+      "/images/projects/bc250-couch-gaming/11.jpg",
+      "/images/projects/bc250-couch-gaming/12.jpg"
     ]
   },
 ];
