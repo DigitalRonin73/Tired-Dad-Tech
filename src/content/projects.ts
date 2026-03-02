@@ -34,4 +34,33 @@ export const projects: Project[] = [
       "/images/projects/jarvis/04.jpg"
     ]
   },
+  {
+    slug: "bc250-couch-gaming-console",
+    title: "BC-250 Couch Gaming Console",
+    category: "Project",
+    status: "In Progress",
+    summary:
+      "A custom AMD BC-250 APU gaming build tuned for couch use with Linux Bazzite and Steam Big Picture.",
+    stack: ["AMD BC-250", "Bazzite Linux", "Steam Big Picture", "Noctua Cooling", "3D Printed Case"],
+    publishedAt: "2026-03-01",
+    body: [
+      "This build repurposes an AMD BC-250 APU platform into a compact couch-gaming machine with custom thermals and clean presentation.",
+      "Hardware mods include cooling-fin updates with a Noctua fan, an Apevia 400W PSU with a swapped Noctua fan and cable modifications, and a 1TB SSD for game storage.",
+      "The system BIOS was flashed and Linux Bazzite OS was installed to boot directly into Steam Big Picture mode for a console-like experience.",
+      "A custom 3D-printed case designed by NextGen 3D includes a custom-wired power button and USB dock. Primary use case is couch gaming with GameSir controllers.",
+      "YouTube build link will be added when provided.",
+    ],
+    imageUrls: [
+      "/images/projects/bc250-couch-gaming/01.jpg",
+      "/images/projects/bc250-couch-gaming/02.jpg",
+      "/images/projects/bc250-couch-gaming/03.jpg",
+      "/images/projects/bc250-couch-gaming/04.jpg",
+      "/images/projects/bc250-couch-gaming/05.jpg",
+      "/images/projects/bc250-couch-gaming/06.jpg",
+      "/images/projects/bc250-couch-gaming/07.jpg",
+      "/images/projects/bc250-couch-gaming/08.jpg",
+      "/images/projects/bc250-couch-gaming/09.jpg",
+      "/images/projects/bc250-couch-gaming/10.jpg"
+    ]
+  },
 ];
