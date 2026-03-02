@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/content/projects";
@@ -37,6 +38,25 @@ export default async function ProjectDetailPage({ params }: Props) {
             </span>
           ))}
         </div>
+
+        {project.imageUrls?.length ? (
+          <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220] p-6">
+            <h2 className="text-2xl font-semibold">Project Gallery</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {project.imageUrls.map((img, idx) => (
+                <div key={`${img}-${idx}`} className="relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+                  <Image
+                    src={img}
+                    alt={`${project.title} image ${idx + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="mt-10 space-y-4 rounded-2xl border border-cyan-400/20 bg-[#0a1220] p-6">
           <h2 className="text-2xl font-semibold">Build Notes</h2>
