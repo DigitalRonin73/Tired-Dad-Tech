@@ -74,7 +74,23 @@ export const pcBuilds: PcBuild[] = [
     summary:
       "SteamOS-style compact gaming build with cooling and BIOS mods on AMD BC250 hardware.",
     videoUrl: "https://www.youtube.com/watch?v=08ZUIO7Bz5U",
-    imageUrls: [placeholderImage],
+    imageUrls: [
+      "/images/projects/bc250-couch-gaming/01.jpg",
+      "/images/projects/bc250-couch-gaming/02.jpg",
+      "/images/projects/bc250-couch-gaming/03.jpg",
+      "/images/projects/bc250-couch-gaming/04.jpg",
+      "/images/projects/bc250-couch-gaming/05.jpg",
+      "/images/projects/bc250-couch-gaming/06.jpg",
+      "/images/projects/bc250-couch-gaming/07.jpg",
+      "/images/projects/bc250-couch-gaming/08.jpg",
+      "/images/projects/bc250-couch-gaming/09.jpg",
+      "/images/projects/bc250-couch-gaming/10.jpg",
+      "/images/projects/bc250-couch-gaming/11.jpg",
+      "/images/projects/bc250-couch-gaming/12.jpg",
+      "/images/projects/bc250-couch-gaming/13.jpg",
+      "/images/projects/bc250-couch-gaming/14.jpg",
+      "/images/projects/bc250-couch-gaming/15.jpg"
+    ],
     specs: {
       motherboard: "AMD BC250 board",
       processor: "AMD BC250 APU",
@@ -87,51 +103,19 @@ export const pcBuilds: PcBuild[] = [
         "BIOS flash + Bazzite install with Steam Big Picture workflow. Pairs with GameSir controllers for couch gaming.",
     },
   },
-  {
-    slug: "bc250-custom-case-temps",
-    title: "BC250 Custom Case Build (Temp Focus)",
-    summary:
-      "BC250 assembled into custom case with thermal validation and compact console-style layout.",
-    videoUrl: "https://www.youtube.com/watch?v=d7Hwqxn9yg8",
-    imageUrls: [placeholderImage],
-    specs: {
-      motherboard: "AMD BC250 board",
-      processor: "AMD BC250 APU",
-      ram: "TBD",
-      gpu: "Integrated (BC250 platform)",
-      psu: "Apevia 400W (modded)",
-      case: "Custom 3D printed shell",
-      cooler: "Noctua-based cooling setup",
-      details:
-        "Focuses on assembly process, thermal behavior, and practical couch-gaming ergonomics.",
-    },
-  },
-  {
-    slug: "i5-9600k-rx7600-bazzite",
-    title: "Bazzite Upgrade Build (i5-9600K + RX 7600)",
-    summary:
-      "Old Intel platform revived for modern gaming with Linux Bazzite and optimized settings.",
-    videoUrl: "https://www.youtube.com/watch?v=J0CH_QQPbKo",
-    imageUrls: [placeholderImage],
-    specs: {
-      motherboard: "Z370 motherboard",
-      processor: "Intel i5-9600K",
-      ram: "TBD",
-      gpu: "Radeon RX 7600",
-      psu: "TBD",
-      case: "Montech case (mixed fans)",
-      cooler: "TBD",
-      details:
-        "Real-world Bazzite testing focused on practical frame pacing and settings balance, not just synthetic benchmark runs.",
-    },
-  },
+
+
   {
     slug: "christmas-build-7500f-9060xt",
     title: "Christmas Build (Ryzen 5 7500F + RX 9060 XT)",
     summary:
       "A festive performance-focused gaming build with AM5 platform efficiency.",
     videoUrl: "https://www.youtube.com/watch?v=j88aHoyi63s",
-    imageUrls: [placeholderImage],
+    imageUrls: [
+      "/images/pc-builds/christmas-build-7500f-9060xt/01.jpg",
+      "/images/pc-builds/christmas-build-7500f-9060xt/02.jpg",
+      "/images/pc-builds/christmas-build-7500f-9060xt/03.jpg"
+    ],
     specs: {
       motherboard: "TBD",
       processor: "Ryzen 5 7500F",
@@ -150,7 +134,13 @@ export const pcBuilds: PcBuild[] = [
     summary:
       "SteamOS-like living room machine running Bazzite with controller-first UX.",
     videoUrl: "https://www.youtube.com/watch?v=57ZpE0kT9MA",
-    imageUrls: [placeholderImage],
+    imageUrls: [
+      "/images/pc-builds/steam-machine-2025-5600x-6600/01.jpg",
+      "/images/pc-builds/steam-machine-2025-5600x-6600/02.jpg",
+      "/images/pc-builds/steam-machine-2025-5600x-6600/03.jpg",
+      "/images/pc-builds/steam-machine-2025-5600x-6600/04.jpg",
+      "/images/pc-builds/steam-machine-2025-5600x-6600/05.jpg"
+    ],
     specs: {
       motherboard: "TBD",
       processor: "Ryzen 5 5600X",
@@ -169,7 +159,13 @@ export const pcBuilds: PcBuild[] = [
     summary:
       "Sub-$500 value build aimed at strong 1080p performance and upgrade flexibility.",
     videoUrl: "https://www.youtube.com/watch?v=ypttXhxb4RU",
-    imageUrls: [placeholderImage],
+    imageUrls: [
+      "/images/pc-builds/budget-500-z390-rx7600/01.jpg",
+      "/images/pc-builds/budget-500-z390-rx7600/02.jpg",
+      "/images/pc-builds/budget-500-z390-rx7600/03.jpg",
+      "/images/pc-builds/budget-500-z390-rx7600/04.jpg",
+      "/images/pc-builds/budget-500-z390-rx7600/05.jpg"
+    ],
     specs: {
       motherboard: "Gigabyte Z390 ATX",
       processor: "Intel CPU (exact model TBD)",
@@ -258,4 +254,27 @@ export const pcBuilds: PcBuild[] = [
         "500GB M.2 SSD base build; focuses on what to keep, what to replace, and where value can still be found.",
     },
   },
+  {
+    slug: "i5-9600k-rx7600-bazzite",
+    title: "Bazzite Upgrade Build (i5-9600K + RX 7600)",
+    summary:
+      "Older Intel platform refreshed with Linux Bazzite for strong real-world gaming performance.",
+    videoUrl: "https://www.youtube.com/watch?v=J0CH_QQPbKo",
+    imageUrls: [
+      "/images/pc-builds/i5-9600k-rx7600-bazzite/01.jpg",
+      "/images/pc-builds/i5-9600k-rx7600-bazzite/02.jpg"
+    ],
+    specs: {
+      motherboard: "Z370 motherboard",
+      processor: "Intel i5-9600K",
+      ram: "TBD",
+      gpu: "Radeon RX 7600",
+      psu: "TBD",
+      case: "Montech case (mixed fans)",
+      cooler: "TBD",
+      details:
+        "Bazzite-focused upgrade to test how far older hardware can be pushed in modern gaming. More final spec details can be added as needed.",
+    },
+  },
+
 ];
