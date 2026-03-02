@@ -22,7 +22,7 @@ export default async function HomePage() {
       </div>
 
       <div className="sticky top-3 z-40 mx-auto mt-3 w-[calc(100%-1rem)] max-w-6xl px-2 sm:px-0">
-        <div className="top-nav-shell flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           <Link className="nav-pill nav-pill-strong" href="/war-room">
             <span>The War Room</span>
             <span aria-hidden>↗</span>
@@ -40,22 +40,17 @@ export default async function HomePage() {
 
       <section className="reveal-section reveal-delay-1 relative isolate border-b border-cyan-400/20">
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-24">
-          <div className="mb-8">
+          <div className="relative mb-8 h-[150px] overflow-hidden rounded-xl border border-cyan-300/40 shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:h-[170px] md:h-[185px]">
             <Image
               src="/images/brand-banner.jpg"
               alt="Tired Dad Tech banner"
-              width={2400}
-              height={800}
-              className="h-auto max-h-[180px] w-full rounded-xl border border-cyan-300/40 object-cover shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:max-h-[200px]"
+              fill
+              sizes="100vw"
+              className="object-cover object-[center_45%] scale-[1.03]"
               priority
             />
           </div>
 
-          <div className="mb-6 flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] text-cyan-300">
-            <span className="rounded-full border border-cyan-400/40 px-3 py-1">Homelab</span>
-            <span className="rounded-full border border-cyan-400/40 px-3 py-1">Computer Builds</span>
-            <span className="rounded-full border border-cyan-400/40 px-3 py-1">Project Vault</span>
-          </div>
 
           <h1 className="max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
             Build smarter systems. Ship better projects. Document everything.
