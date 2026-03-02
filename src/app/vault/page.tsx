@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content/projects";
 
@@ -25,18 +26,21 @@ export default function VaultPage() {
               <p className="text-xs uppercase tracking-[0.16em] text-cyan-300">
                 {project.category} · {project.status}
               </p>
-              <h2 className="mt-2 text-2xl font-semibold">{project.title}</h2>
-              <p className="mt-3 text-zinc-300">{project.summary}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {project.stack.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-zinc-700 px-3 py-1 text-xs text-zinc-300"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+
+              {project.imageUrls?.[0] ? (
+                <div className="relative mt-3 aspect-video overflow-hidden rounded-lg border border-cyan-300/20">
+                  <Image
+                    src={project.imageUrls[0]}
+                    alt={`${project.title} thumbnail`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+              ) : null}
+
+              <h2 className="mt-3 text-2xl font-semibold">{project.title}</h2>
+              <p className="mt-2 text-zinc-300">{project.summary}</p>
             </Link>
           ))}
         </div>
