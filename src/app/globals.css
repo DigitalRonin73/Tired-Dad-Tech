@@ -198,11 +198,14 @@ body::before {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid rgba(251, 146, 60, 0.7);
-  background: rgba(10, 14, 22, 0.62);
-  backdrop-filter: blur(4px);
+  border: 1px solid rgba(251, 146, 60, 0.78);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 28%, rgba(8, 12, 20, 0.38) 30%, rgba(8, 12, 20, 0.5) 100%),
+    linear-gradient(145deg, rgba(22, 30, 48, 0.78), rgba(12, 18, 30, 0.62));
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
   padding: 0.44rem 0.78rem;
-  border-radius: 2px;
+  border-radius: 999px;
   color: rgb(255 237 213);
   font-size: 0.82rem;
   font-weight: 700;
@@ -210,9 +213,11 @@ body::before {
   font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   text-transform: uppercase;
   box-shadow:
-    0 0 0 1px rgba(251, 146, 60, 0.18),
-    0 0 14px rgba(251, 146, 60, 0.22),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    0 0 0 1px rgba(251, 146, 60, 0.26),
+    0 10px 22px rgba(8, 18, 40, 0.42),
+    0 0 20px rgba(251, 146, 60, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -14px 22px rgba(6, 10, 18, 0.42);
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, filter 180ms ease;
   overflow: hidden;
 }
@@ -248,12 +253,14 @@ body::before {
 
 .nav-pill:hover {
   transform: translateY(-1px);
-  border-color: rgba(251, 146, 60, 0.98);
+  border-color: rgba(251, 146, 60, 1);
   box-shadow:
-    0 0 0 1px rgba(251, 146, 60, 0.25),
-    0 0 22px rgba(251, 146, 60, 0.45),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  filter: saturate(1.12);
+    0 0 0 1px rgba(251, 146, 60, 0.34),
+    0 14px 28px rgba(7, 26, 49, 0.48),
+    0 0 30px rgba(251, 146, 60, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -14px 22px rgba(4, 8, 16, 0.48);
+  filter: saturate(1.18) brightness(1.04);
 }
 
 @keyframes statusBlink {
