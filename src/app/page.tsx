@@ -101,9 +101,9 @@ export default async function HomePage() {
             alt="Latest video section background"
             fill
             sizes="(max-width: 768px) 100vw, 70vw"
-            className="object-cover opacity-38"
+            className="object-cover opacity-56"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#081321]/58 via-[#0a1220]/72 to-[#0a1220]/86" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#081321]/24 via-[#0a1220]/38 to-[#0a1220]/55" />
           <div className="relative z-10">
             <h2 className="mb-4 text-2xl font-semibold">Latest YouTube Upload</h2>
 
@@ -146,9 +146,9 @@ export default async function HomePage() {
             alt="YouTube channel section background"
             fill
             sizes="(max-width: 768px) 100vw, 35vw"
-            className="object-cover opacity-34"
+            className="object-cover opacity-52"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#081321]/56 via-[#0a1220]/70 to-[#0a1220]/86" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#081321]/22 via-[#0a1220]/34 to-[#0a1220]/52" />
           <div className="relative z-10">
             <h3 className="mb-3 text-xl font-semibold">Watch Tired Dad Tech</h3>
             <p className="mb-4 text-sm leading-6 text-zinc-200">

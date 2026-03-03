@@ -31,8 +31,8 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
-  opacity: 0.08;
+  z-index: -2;
+  opacity: 0.04;
   background-image:
     radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.28) 0 0.7px, transparent 1px),
     radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.24) 0 0.6px, transparent 1px),
