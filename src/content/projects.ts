@@ -2,7 +2,7 @@ export type Project = {
   slug: string;
   title: string;
   category: "Computer Build" | "Homelab" | "Project";
-  status: "In Progress" | "Shipped" | "Planned";
+  status: "In Progress" | "Completed" | "Planned";
   summary: string;
   stack: string[];
   publishedAt: string;
