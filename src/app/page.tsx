@@ -45,13 +45,13 @@ export default async function HomePage() {
 
       <section className="reveal-section reveal-delay-1 relative isolate border-b border-cyan-400/20">
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-24">
-          <div className="relative mb-8 h-[150px] overflow-hidden rounded-xl border border-cyan-300/40 shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:h-[170px] md:h-[185px]">
+          <div className="relative mb-8 h-[150px] overflow-hidden rounded-xl border border-cyan-300/40 bg-[#071425] shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:h-[170px] md:h-[185px]">
             <Image
               src="/images/brand-banner.jpg"
               alt="Tired Dad Tech banner"
               fill
               sizes="100vw"
-              className="object-cover object-[center_45%] scale-[1.03]"
+              className="object-contain object-center"
               priority
             />
           </div>
@@ -66,7 +66,7 @@ export default async function HomePage() {
             budget-friendly SFF PCs and custom 3D-printed mods to stripping the bloat with Linux,
             my mission is to document the exact path to a faster, leaner, and more efficient home lab.
             If it saves time, cuts costs, or stabilizes the network, I’m building it, tuning it,
-            and shipping the documentation so you can do the same.
+            and documenting the exact process so you can do the same.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
@@ -192,7 +192,7 @@ export default async function HomePage() {
             Built between real life, late nights, and coffee refills. Not perfect. Always improving.
           </p>
           <p className="mt-3 text-cyan-200/80" style={{ fontFamily: "'Comic Sans MS', 'Marker Felt', cursive" }}>
-            ~~~ keep building, keep shipping ~~~
+            ~~~ keep building, keep improving ~~~
           </p>
         </div>
       </footer>
