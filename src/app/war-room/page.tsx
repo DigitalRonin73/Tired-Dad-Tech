@@ -76,6 +76,16 @@ export default function WarRoomPage() {
               </ul>
             </div>
           </div>
+
+          <div className="mt-4 relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+            <Image
+              src="/images/war-room/primary-desk.jpg"
+              alt="Display and peripherals setup"
+              fill
+              sizes="(max-width: 768px) 100vw, 80vw"
+              className="object-cover"
+            />
+          </div>
         </section>
 
         <section className="mt-10 grid gap-6 md:grid-cols-2">
@@ -86,8 +96,14 @@ export default function WarRoomPage() {
               drawers on the right and an Alex cabinet on the left. It keeps the setup stable,
               clean, and easy to service while still hiding the utility side of the room.
             </p>
-            <div className="mt-4 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-              Photo placeholder: primary desk wide shot (to be added)
+            <div className="mt-4 relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <Image
+                src="/images/war-room/primary-furniture.jpg"
+                alt="Primary desk furniture layout"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
             </div>
           </div>
 
@@ -128,11 +144,23 @@ export default function WarRoomPage() {
             used for teardown/build sessions, project testing, and filming. It is usually staged with
             a soldering mat where 3D-print assemblies and electronics work happen.
           </p>
-          <div className="mt-4 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-            Photo placeholder: Great Wave of Kanagawa acoustic panel wall (to be added)
+          <div className="mt-4 relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+            <Image
+              src="/images/war-room/great-wave.jpg"
+              alt="Great Wave of Kanagawa acoustic panel wall"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
           </div>
-          <div className="mt-3 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-            Photo placeholder: FlexiSpot filming/build desk with soldering mat (to be added)
+          <div className="mt-3 relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+            <Image
+              src="/images/war-room/filming-desk.jpg"
+              alt="Filming and build desk"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
           </div>
         </section>
 
@@ -217,8 +245,14 @@ export default function WarRoomPage() {
             </div>
           </div>
 
-          <div className="mt-4 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-            Photo placeholder: rack front + Beelink mount (to be added)
+          <div className="mt-4 relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+            <Image
+              src="/images/war-room/rack-front.jpg"
+              alt="Command Center 10-inch rack front view"
+              fill
+              sizes="(max-width: 768px) 100vw, 70vw"
+              className="object-cover"
+            />
           </div>
           <div className="mt-3 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
             Photo placeholder: cabinet interior/cable management (to be added)
