@@ -168,9 +168,10 @@ export default async function HomePage() {
                 href="https://www.youtube.com/@TiredDadTech?sub_confirmation=1"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-lg border border-amber-300/50 bg-amber-400/10 px-4 py-2 text-sm font-semibold text-amber-100 hover:bg-amber-400/20"
+                className="inline-flex items-center gap-2 rounded-md border border-red-700/80 bg-[#ff0000] px-4 py-2 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(255,0,0,0.35)] hover:bg-[#e00000]"
               >
-                Subscribe
+                <span aria-hidden>▶</span>
+                <span>Subscribe</span>
               </a>
             </div>
           </div>
