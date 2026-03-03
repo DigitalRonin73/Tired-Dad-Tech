@@ -10,7 +10,7 @@ export default function WarRoomPage() {
         </Link>
 
         <header className="mt-4 border-b border-cyan-400/20 pb-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">The War Room</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">The Command Center</p>
           <h1 className="mt-2 text-4xl font-semibold leading-tight md:text-5xl">
             Inside the office: the setup, the workflow, and the infrastructure behind Tired Dad Tech.
           </h1>
@@ -24,7 +24,7 @@ export default function WarRoomPage() {
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-cyan-400/25">
             <Image
               src="/images/pc-builds/placeholder-war-room-rig/file_16---5011758c-67af-423a-95e2-0b74073455bc.jpg"
-              alt="War Room main rig"
+              alt="Command Center main rig"
               fill
               sizes="(max-width: 768px) 100vw, 60vw"
               className="object-cover"
@@ -118,7 +118,7 @@ export default function WarRoomPage() {
         <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
           <h2 className="text-2xl font-semibold">Office Overview: Studio + Workshop</h2>
           <p className="mt-3 text-zinc-300 leading-7">
-            The War Room is more than a desk setup. It doubles as a YouTube studio and a working
+            The Command Center is more than a desk setup. It doubles as a YouTube studio and a working
             project space for builds, repairs, testing, and experiments. The room is designed to be
             practical on camera and efficient off camera.
           </p>
@@ -139,7 +139,7 @@ export default function WarRoomPage() {
         <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
           <h2 className="text-2xl font-semibold">On-the-Go Rig: ThinkPad L490</h2>
           <p className="mt-3 text-zinc-300 leading-7">
-            This is the portable side of the War Room: a Lenovo ThinkPad L490 picked up for about $200
+            This is the portable side of the Command Center: a Lenovo ThinkPad L490 picked up for about $200
             and upgraded immediately for real daily use. Storage was moved to a 1TB SSD, memory was
             expanded to 32GB RAM, and the keyboard was swapped from a Japanese layout to an English layout.
             It now runs Linux (Zorin OS) as a dependable on-the-go test and utility machine.
@@ -228,7 +228,7 @@ export default function WarRoomPage() {
         <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
           <h2 className="text-2xl font-semibold">NAS + Media Stack</h2>
           <p className="mt-3 text-zinc-300 leading-7">
-            The War Room also includes a dedicated NAS built for media, storage, and self-hosted services.
+            The Command Center also includes a dedicated NAS built for media, storage, and self-hosted services.
             It runs Unraid as the operating system and acts as the backbone for entertainment and private cloud workflows.
           </p>
 
