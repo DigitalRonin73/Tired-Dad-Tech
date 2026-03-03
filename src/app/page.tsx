@@ -58,12 +58,15 @@ export default async function HomePage() {
 
 
           <h1 className="max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
-            Build smarter systems. Ship better projects. Document everything.
+            The Lab Opens When the House Goes Quiet.
           </h1>
 
           <p className="mt-5 max-w-3xl text-base text-zinc-200 sm:text-lg">
-            I document real computer builds, homelab systems, and hands-on projects with
-            actionable detail—so you can see exactly how it was built, tuned, and shipped.
+            I build high-performance systems in the margins of a busy life. From engineering
+            budget-friendly SFF PCs and custom 3D-printed mods to stripping the bloat with Linux,
+            my mission is to document the exact path to a faster, leaner, and more efficient home lab.
+            If it saves time, cuts costs, or stabilizes the network, I’m building it, tuning it,
+            and shipping the documentation so you can do the same.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
