@@ -94,7 +94,7 @@ export const pcBuilds: PcBuild[] = [
     specs: {
       motherboard: "AMD BC250 board",
       processor: "AMD BC250 APU",
-      ram: "TBD",
+      ram: "16GB unified RAM",
       gpu: "Integrated (BC250 platform)",
       psu: "Apevia 400W (modded, Noctua fan swap)",
       case: "Custom 3D printed case (NextGen3D)",
@@ -169,11 +169,11 @@ export const pcBuilds: PcBuild[] = [
     specs: {
       motherboard: "Gigabyte Z390 ATX",
       processor: "Intel CPU (exact model TBD)",
-      ram: "TBD",
+      ram: "16GB DDR4",
       gpu: "ASUS RX 7600",
       psu: "Thermalright 750W 80+ Gold",
       case: "MSI MAG Forge 130A",
-      cooler: "TBD",
+      cooler: "Cooler Master",
       details:
         "1TB NVMe M.2 SSD included. Tuned for smooth high-setting 1080p gameplay on a strict budget.",
     },
@@ -191,13 +191,13 @@ export const pcBuilds: PcBuild[] = [
       "/images/pc-builds/ch160-mini-itx-build/04.jpg"
     ],
     specs: {
-      motherboard: "mITX board (TBD)",
+      motherboard: "MaxSun B650i",
       processor: "Ryzen 5 7500F",
-      ram: "TBD",
+      ram: "32GB DDR5 CL32 6000MHz",
       gpu: "RX 9060 XT 16GB",
       psu: "Thermalright 750W",
       case: "DeepCool CH160",
-      cooler: "TBD",
+      cooler: "DeepCool AK500 Digital",
       details:
         "Covers cable constraints, thermal tradeoffs, and compact-build assembly pitfalls.",
     },
@@ -216,11 +216,11 @@ export const pcBuilds: PcBuild[] = [
     specs: {
       motherboard: "MSI B650M (mATX AM5)",
       processor: "Ryzen 5 7500F",
-      ram: "TBD",
+      ram: "32GB DDR5 CL32 6000MHz",
       gpu: "RX 6800 16GB",
       psu: "Corsair RM850x",
       case: "DarkFlash fishtank-style mATX",
-      cooler: "TBD",
+      cooler: "Thermalright AIO 360mm water cooler",
       details:
         "Family build story with practical component choices and value-focused tuning.",
     },
@@ -276,11 +276,11 @@ export const pcBuilds: PcBuild[] = [
     specs: {
       motherboard: "Z370 motherboard",
       processor: "Intel i5-9600K",
-      ram: "TBD",
+      ram: "16GB DDR4",
       gpu: "Radeon RX 7600",
-      psu: "TBD",
+      psu: "Thermalright 750W Gold",
       case: "Montech case (mixed fans)",
-      cooler: "TBD",
+      cooler: "Cooler Master",
       details:
         "Bazzite-focused upgrade to test how far older hardware can be pushed in modern gaming. More final spec details can be added as needed.",
     },
@@ -300,11 +300,11 @@ export const pcBuilds: PcBuild[] = [
     specs: {
       motherboard: "AM4 mITX motherboard (model TBD)",
       processor: "Ryzen 9 3900X",
-      ram: "TBD",
-      gpu: "TBD",
-      psu: "TBD",
+      ram: "32GB DDR4",
+      gpu: "RX 9060 XT 8GB",
+      psu: "Thermalright 750W SFX Gold",
       case: "Metal Fish T60 mITX",
-      cooler: "TBD",
+      cooler: "Thermalright low profile cooler",
       details:
         "SFF build completed with Aaron. 12-core/24-thread AM4 platform packed into a compact Metal Fish chassis.",
     },
