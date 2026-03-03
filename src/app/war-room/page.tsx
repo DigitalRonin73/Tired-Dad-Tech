@@ -103,8 +103,14 @@ export default function WarRoomPage() {
               <p><span className="text-cyan-300">Monitor:</span> LG 1440p ultrawide</p>
               <p className="mt-2"><span className="text-cyan-300">Also housed here:</span> Bambu Lab A1 3D printer</p>
             </div>
-            <div className="mt-3 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-              Photo placeholder: second desk + LG ultrawide + printer (to be added)
+            <div className="mt-3 relative aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <Image
+                src="/images/war-room/second-desk.jpg"
+                alt="Second desk with LG ultrawide and printer"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </section>
