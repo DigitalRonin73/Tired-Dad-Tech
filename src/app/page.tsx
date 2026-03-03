@@ -143,20 +143,36 @@ export default async function HomePage() {
         <aside className="relative overflow-hidden rounded-2xl border border-cyan-400/25 bg-[#0a1220]/90 p-6">
           <Image
             src="/images/graphic-dashboard.jpg"
-            alt="Dashboard graphic"
+            alt="YouTube channel section background"
             fill
             sizes="(max-width: 768px) 100vw, 35vw"
-            className="object-cover opacity-36"
+            className="object-cover opacity-34"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[#081321]/56 via-[#0a1220]/70 to-[#0a1220]/86" />
           <div className="relative z-10">
-            <h3 className="mb-4 text-xl font-semibold">Mission Control Snapshot</h3>
-            <ul className="space-y-2 text-zinc-200">
-              <li>• Homelab systems and service architecture</li>
-              <li>• Computer build guides and performance tuning</li>
-              <li>• Project postmortems and implementation notes</li>
-              <li>• Resume-grade technical portfolio</li>
-            </ul>
+            <h3 className="mb-3 text-xl font-semibold">Watch Tired Dad Tech</h3>
+            <p className="mb-4 text-sm leading-6 text-zinc-200">
+              Weekly builds, Linux experiments, and home-lab upgrades from the War Room.
+              If you like practical guides and real test results, this is where it all drops first.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://www.youtube.com/@TiredDadTech"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-lg border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100 hover:bg-cyan-400/20"
+              >
+                Visit Channel
+              </a>
+              <a
+                href="https://www.youtube.com/@TiredDadTech?sub_confirmation=1"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-lg border border-amber-300/50 bg-amber-400/10 px-4 py-2 text-sm font-semibold text-amber-100 hover:bg-amber-400/20"
+              >
+                Subscribe
+              </a>
+            </div>
           </div>
         </aside>
       </section>
