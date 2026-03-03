@@ -29,7 +29,7 @@ export default async function HomePage() {
       <div className="sticky top-3 z-40 mx-auto mt-3 w-[calc(100%-1rem)] max-w-6xl px-2 sm:px-0">
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           <Link className="nav-pill nav-pill-strong" href="/war-room">
-            <span>The War Room</span>
+            <span>The Command Center</span>
             <span aria-hidden>↗</span>
           </Link>
           <Link className="nav-pill nav-pill-strong" href="/vault">
@@ -37,7 +37,7 @@ export default async function HomePage() {
             <span aria-hidden>↗</span>
           </Link>
           <Link className="nav-pill nav-pill-strong" href="/pc-builds">
-            <span>PC Builds</span>
+            <span>Custom Rigs</span>
             <span aria-hidden>↗</span>
           </Link>
         </div>
@@ -80,7 +80,7 @@ export default async function HomePage() {
               href="/war-room"
               className="cta-sheen rounded-xl border border-cyan-300/40 px-5 py-3 text-center font-medium text-cyan-100 hover:bg-cyan-400/10"
             >
-              Step into the War Room
+              Enter the Command Center
             </Link>
             <a
               href="https://www.youtube.com/@TiredDadTech"
