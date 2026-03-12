@@ -1,16 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content/projects";
-import { getLatestYouTubeVideo } from "@/lib/youtube";
-
 export default async function HomePage() {
-  const latestVideo = await getLatestYouTubeVideo();
   const featured = projects.slice(0, 3);
-  const fallbackVideo = {
-    videoId: "WO9IS3G7tF0",
-    title: "Latest upload (fallback)",
-    url: "https://www.youtube.com/@TiredDadTech/videos",
-  };
+  const uploadsPlaylistId = "UUkWdWRPKcen8EMR_Xn6S8qw";
 
   return (
     <main className="tech-bg relative z-0 min-h-screen bg-[#070b12] text-zinc-100">
@@ -45,13 +38,13 @@ export default async function HomePage() {
 
       <section className="reveal-section reveal-delay-1 relative isolate border-b border-cyan-400/20">
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-24">
-          <div className="relative mb-8 h-[150px] overflow-hidden rounded-xl border border-cyan-300/40 bg-[#071425] shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:h-[170px] md:h-[185px]">
+          <div className="relative left-1/2 mb-8 h-[140px] w-screen -translate-x-1/2 overflow-hidden border-y border-cyan-300/40 bg-[#071425] shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:h-[170px] md:h-[210px]">
             <Image
               src="/images/brand-banner.jpg"
               alt="Tired Dad Tech banner"
               fill
               sizes="100vw"
-              className="object-contain object-center"
+              className="object-cover object-center"
               priority
             />
           </div>
@@ -107,36 +100,24 @@ export default async function HomePage() {
           <div className="relative z-10">
             <h2 className="mb-4 text-2xl font-semibold">Latest YouTube Upload</h2>
 
-            {(() => {
-              const video = latestVideo ?? fallbackVideo;
-              return (
-                <>
-                  <div className="aspect-video overflow-hidden rounded-xl border border-zinc-700/90 shadow-[0_0_0_1px_rgba(34,211,238,0.08)]">
-                    <iframe
-                      className="h-full w-full"
-                      src={`https://www.youtube.com/embed/${video.videoId}`}
-                      title={video.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                  <p className="mt-3 text-lg font-medium">{latestVideo?.title ?? video.title}</p>
-                  <a
-                    className="mt-2 inline-block text-cyan-300 hover:text-cyan-200"
-                    href={latestVideo?.url ?? video.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Watch on YouTube →
-                  </a>
-                  {!latestVideo ? (
-                    <p className="mt-2 text-xs text-amber-200/90">
-                      Feed fallback active — showing channel latest known video.
-                    </p>
-                  ) : null}
-                </>
-              );
-            })()}
+            <div className="aspect-video overflow-hidden rounded-xl border border-zinc-700/90 shadow-[0_0_0_1px_rgba(34,211,238,0.08)]">
+              <iframe
+                className="h-full w-full"
+                src={`https://www.youtube.com/embed?listType=playlist&list=${uploadsPlaylistId}`}
+                title="Latest YouTube upload"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <p className="mt-3 text-lg font-medium">Newest upload from the channel</p>
+            <a
+              className="mt-2 inline-block text-cyan-300 hover:text-cyan-200"
+              href="https://www.youtube.com/@TiredDadTech/videos"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Watch on YouTube →
+            </a>
           </div>
         </article>
 
