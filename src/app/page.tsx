@@ -133,8 +133,8 @@ export default async function HomePage() {
           <div className="relative z-10">
             <h3 className="mb-3 text-xl font-semibold">Watch Tired Dad Tech</h3>
             <p className="mb-4 text-sm leading-6 text-zinc-200">
-              Weekly builds, Linux experiments, and home-lab upgrades from the War Room.
-              If you like practical guides and real test results, this is where it all drops first.
+              Built after bedtime, tested in the real world.
+              From budget SFF builds to Linux-powered home-lab experiments, every video is focused on performance, stability, and doing more with less.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
