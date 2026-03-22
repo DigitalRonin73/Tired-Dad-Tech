@@ -33,6 +33,10 @@ export default async function HomePage() {
             <span>Custom Rigs</span>
             <span aria-hidden>↗</span>
           </Link>
+          <Link className="nav-pill nav-pill-strong" href="/poc-mobile">
+            <span>Mobile POC</span>
+            <span aria-hidden>↗</span>
+          </Link>
         </div>
       </div>
 
