@@ -38,7 +38,7 @@ export default async function HomePage() {
             <span aria-hidden>↗</span>
           </Link>
           <Link className="nav-pill nav-pill-strong" href="/linux-lab">
-            <span>Linux Lab</span>
+            <span>Linux Basics</span>
             <span aria-hidden>↗</span>
           </Link>
         </div>
