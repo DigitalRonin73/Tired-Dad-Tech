@@ -21,18 +21,13 @@ export default async function ProjectDetailPage({ params }: Props) {
     project.slug === "i-turned-a-bc250-into-an-ai-agent-with-openclaw";
   const latestVideo = isBc250CoolingGuide ? await getLatestYouTubeVideo() : null;
 
-  const openClawInstallCommands = `# Install OpenClaw
-curl -fsSL https://openclaw.ai/install.sh | bash
-
-# Run onboarding + install daemon service
-openclaw onboard --install-daemon
-
-# Verify and start gateway daemon
-openclaw gateway status
-openclaw gateway start
-
-# Confirm full status
-openclaw status`;
+  const openClawCommandSteps = [
+    { title: "1) Install OpenClaw", code: "curl -fsSL https://openclaw.ai/install.sh | bash" },
+    { title: "2) Onboard + install daemon", code: "openclaw onboard --install-daemon" },
+    { title: "3) Check gateway status", code: "openclaw gateway status" },
+    { title: "4) Start gateway daemon", code: "openclaw gateway start" },
+    { title: "5) Verify full status", code: "openclaw status" },
+  ];
 
   return (
     <main className="tech-bg min-h-screen bg-[#070b12] text-zinc-100">
@@ -121,7 +116,12 @@ Example GND options: pins 15, 17, 18, 19, 24 (wire color can vary by PSU)`}</cod
               </ul>
             </div>
 
-            <CopyCodeBlock title="Install OpenClaw + run onboard daemon" code={openClawInstallCommands} />
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold">OpenClaw install commands (copy one-by-one)</h3>
+              {openClawCommandSteps.map((step) => (
+                <CopyCodeBlock key={step.title} title={step.title} code={step.code} />
+              ))}
+            </div>
           </section>
         ) : null}
 
