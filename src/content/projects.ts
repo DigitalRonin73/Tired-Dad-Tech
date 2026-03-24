@@ -16,7 +16,7 @@ export const projects: Project[] = [
     slug: "jarvis-self-hosted-assistant",
     title: "Jarvis: The Private Voice Assistant",
     category: "Project",
-    status: "In Progress",
+    status: "Completed",
     summary:
       "A fully local, privacy-first alternative to cloud voice assistants where voice data stays on the home network.",
     stack: ["Home Assistant", "Proxmox", "Mac mini M1", "Raspberry Pi", "openWakeWord"],
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     slug: "bc250-couch-gaming-console",
     title: "BC-250 Couch Gaming Console",
     category: "Project",
-    status: "In Progress",
+    status: "Completed",
     summary:
       "A custom AMD BC-250 APU gaming build tuned for couch use with Linux Bazzite and Steam Big Picture.",
     stack: ["AMD BC-250", "Bazzite Linux", "Steam Big Picture", "Noctua Cooling", "3D Printed Case"],

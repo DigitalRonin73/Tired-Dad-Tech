@@ -117,7 +117,18 @@ Example GND options: pins 15, 17, 18, 19, 24 (wire color can vary by PSU)`}</cod
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-lg font-semibold">OpenClaw install commands (copy one-by-one)</h3>
+              <h3 className="text-lg font-semibold">OpenClaw install commands (run in order)</h3>
+              <div className="rounded-lg border border-cyan-300/20 bg-[#08101d] p-3 text-sm text-zinc-300">
+                <p className="font-medium text-cyan-200">Run sequence: 1 → 5</p>
+                <ul className="mt-2 space-y-1">
+                  {openClawCommandSteps.map((step) => (
+                    <li key={`check-${step.title}`} className="flex items-center gap-2">
+                      <span aria-hidden className="text-cyan-300">☐</span>
+                      <span>{step.title}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               {openClawCommandSteps.map((step) => (
                 <CopyCodeBlock key={step.title} title={step.title} code={step.code} />
               ))}
