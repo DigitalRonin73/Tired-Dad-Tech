@@ -40,15 +40,15 @@ export const projects: Project[] = [
     category: "Project",
     status: "In Progress",
     summary:
-      "A custom AMD BC-250 APU gaming build tuned for couch use with Linux Bazzite and Steam Big Picture.",
-    stack: ["AMD BC-250", "Bazzite Linux", "Steam Big Picture", "Noctua Cooling", "3D Printed Case"],
+      "A BC-250 cooling and usability mod guide: trimmed fins, 120mm fan conversion, SSD + CachyOS install, and OpenClaw setup.",
+    stack: ["AMD BC-250", "Arctic P12 Pro", "CachyOS", "OpenClaw", "ATX PSU Mod"],
     publishedAt: "2026-03-01",
     body: [
-      "This build repurposes an AMD BC-250 APU platform into a compact couch-gaming machine with custom thermals and clean presentation.",
-      "Hardware mods include cooling-fin updates with a Noctua fan, an Apevia 400W PSU with a swapped Noctua fan and cable modifications, and a 1TB SSD for game storage.",
-      "The system BIOS was flashed and Linux Bazzite OS was installed to boot directly into Steam Big Picture mode for a console-like experience.",
-      "A custom 3D-printed case designed by NextGen 3D includes a custom-wired power button and USB dock. Primary use case is couch gaming with GameSir controllers.",
-      "YouTube build link will be added when provided.",
+      "This project documents a practical cooling mod for the AMD BC-250 APU board so it can run desktop and gaming workloads more reliably.",
+      "The stock fin stack is trimmed on top to open airflow, then a 120mm fan is installed directly over the heatsink. Arctic P12 Pro is the recommended fan for this setup.",
+      "Because many BC-250 builds use standalone ATX power supplies, the 24-pin connector must be jumped (PS_ON to GND) so the PSU can be switched on without a standard front-panel header.",
+      "After hardware prep, install an SSD, flash/install CachyOS, and then onboard OpenClaw from terminal to run the local gateway daemon.",
+      "Reference documentation and exact terminal commands are included above in this vault entry.",
     ],
     imageUrls: [
       "/images/projects/bc250-couch-gaming/01.jpg",
@@ -62,7 +62,10 @@ export const projects: Project[] = [
       "/images/projects/bc250-couch-gaming/09.jpg",
       "/images/projects/bc250-couch-gaming/10.jpg",
       "/images/projects/bc250-couch-gaming/11.jpg",
-      "/images/projects/bc250-couch-gaming/12.jpg"
+      "/images/projects/bc250-couch-gaming/12.jpg",
+      "/images/projects/bc250-couch-gaming/13.jpg",
+      "/images/projects/bc250-couch-gaming/14.jpg",
+      "/images/projects/bc250-couch-gaming/15.jpg"
     ]
   },
 ];
