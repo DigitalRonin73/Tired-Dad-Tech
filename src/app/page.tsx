@@ -200,6 +200,12 @@ export default async function HomePage() {
           <p className="mt-3 text-cyan-200/80" style={{ fontFamily: "'Comic Sans MS', 'Marker Felt', cursive" }}>
             ~~~ keep building, keep improving ~~~
           </p>
+          <a
+            href="mailto:Scott@TiredDadTech.com"
+            className="mt-4 inline-flex items-center rounded-lg border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100 hover:bg-cyan-400/20"
+          >
+            Contact Me: Scott@TiredDadTech.com
+          </a>
         </div>
       </footer>
     </main>
