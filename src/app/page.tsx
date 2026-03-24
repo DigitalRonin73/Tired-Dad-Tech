@@ -46,7 +46,7 @@ export default async function HomePage() {
 
       <section className="reveal-section reveal-delay-1 relative isolate border-b border-cyan-400/20">
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-24">
-          <div className="relative left-1/2 mb-8 h-[140px] w-screen -translate-x-1/2 overflow-hidden border-y border-cyan-300/40 bg-[#071425] shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:h-[170px] md:h-[210px]">
+          <div className="relative left-1/2 mb-8 h-[180px] w-screen -translate-x-1/2 overflow-hidden border-y border-cyan-300/40 bg-[#071425] shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:h-[220px] md:h-[280px]">
             <Image
               src="/images/brand-banner.jpg"
               alt="Tired Dad Tech banner"
