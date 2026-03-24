@@ -17,7 +17,8 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   if (!project) notFound();
 
-  const isBc250CoolingGuide = project.slug === "bc250-couch-gaming-console";
+  const isBc250CoolingGuide =
+    project.slug === "i-turned-a-bc250-into-an-ai-agent-with-openclaw";
   const latestVideo = isBc250CoolingGuide ? await getLatestYouTubeVideo() : null;
 
   const openClawInstallCommands = `# Install OpenClaw

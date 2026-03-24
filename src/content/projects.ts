@@ -40,15 +40,15 @@ export const projects: Project[] = [
     category: "Project",
     status: "In Progress",
     summary:
-      "A BC-250 cooling and usability mod guide: trimmed fins, 120mm fan conversion, SSD + CachyOS install, and OpenClaw setup.",
-    stack: ["AMD BC-250", "Arctic P12 Pro", "CachyOS", "OpenClaw", "ATX PSU Mod"],
+      "A custom AMD BC-250 APU gaming build tuned for couch use with Linux Bazzite and Steam Big Picture.",
+    stack: ["AMD BC-250", "Bazzite Linux", "Steam Big Picture", "Noctua Cooling", "3D Printed Case"],
     publishedAt: "2026-03-01",
     body: [
-      "This project documents a practical cooling mod for the AMD BC-250 APU board so it can run desktop and gaming workloads more reliably.",
-      "The stock fin stack is trimmed on top to open airflow, then a 120mm fan is installed directly over the heatsink. Arctic P12 Pro is the recommended fan for this setup.",
-      "Because many BC-250 builds use standalone ATX power supplies, the 24-pin connector must be jumped (PS_ON to GND) so the PSU can be switched on without a standard front-panel header.",
-      "After hardware prep, install an SSD, flash/install CachyOS, and then onboard OpenClaw from terminal to run the local gateway daemon.",
-      "Reference documentation and exact terminal commands are included above in this vault entry.",
+      "This build repurposes an AMD BC-250 APU platform into a compact couch-gaming machine with custom thermals and clean presentation.",
+      "Hardware mods include cooling-fin updates with a Noctua fan, an Apevia 400W PSU with a swapped Noctua fan and cable modifications, and a 1TB SSD for game storage.",
+      "The system BIOS was flashed and Linux Bazzite OS was installed to boot directly into Steam Big Picture mode for a console-like experience.",
+      "A custom 3D-printed case designed by NextGen 3D includes a custom-wired power button and USB dock. Primary use case is couch gaming with GameSir controllers.",
+      "YouTube build link will be added when provided.",
     ],
     imageUrls: [
       "/images/projects/bc250-couch-gaming/01.jpg",
@@ -67,5 +67,23 @@ export const projects: Project[] = [
       "/images/projects/bc250-couch-gaming/14.jpg",
       "/images/projects/bc250-couch-gaming/15.jpg"
     ]
+  },
+  {
+    slug: "i-turned-a-bc250-into-an-ai-agent-with-openclaw",
+    title: "I Turned a BC250 into an AI Agent with OpenClaw",
+    category: "Project",
+    status: "Completed",
+    summary:
+      "Full BC-250 mod and software flow: trim heatsink fins, mount an Arctic P12 Pro 120mm fan, jump ATX 24-pin, install SSD + CachyOS, then onboard OpenClaw.",
+    stack: ["AMD BC-250", "Arctic P12 Pro", "ATX 24-pin jumper", "CachyOS", "OpenClaw"],
+    publishedAt: "2026-03-24",
+    body: [
+      "This project documents the exact BC-250 mod path from stock mining board to usable AI lab machine.",
+      "Hardware: trim the top of the stock fins to open airflow and fit a 120mm fan. Arctic P12 Pro is recommended for static pressure and value.",
+      "Power: jumper ATX 24-pin PS_ON to GND so the PSU can turn on without standard motherboard controls.",
+      "Storage/OS: install SSD, then install CachyOS and complete base setup using the BC-250 community docs.",
+      "AI stack: install OpenClaw from terminal, onboard daemon, and validate gateway status.",
+    ],
+    imageUrls: ["/images/projects/bc250-openclaw-agent/01.jpg"],
   },
 ];
