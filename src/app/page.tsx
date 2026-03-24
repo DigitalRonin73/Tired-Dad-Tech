@@ -37,6 +37,10 @@ export default async function HomePage() {
             <span>Mobile POC</span>
             <span aria-hidden>↗</span>
           </Link>
+          <Link className="nav-pill nav-pill-strong" href="/linux-lab">
+            <span>Linux Lab</span>
+            <span aria-hidden>↗</span>
+          </Link>
         </div>
       </div>
 
