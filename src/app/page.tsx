@@ -21,14 +21,10 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#070b12]/30 via-[#070b12]/50 to-[#070b12]/85" />
       </div>
 
-      <section className="reveal-section reveal-delay-1 relative isolate border-b border-cyan-400/20">
-        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-24">
-
-          <h1 className="max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
-            The Lab Opens When the House Goes Quiet.
-          </h1>
-
-        </div>
+      <section className="reveal-section reveal-delay-1 flex min-h-screen items-center justify-center px-4 sm:px-6">
+        <h1 className="max-w-4xl text-center text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
+          The Lab Opens When the House Goes Quiet.
+        </h1>
       </section>
 
       <section className="reveal-section reveal-delay-2 mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14">
