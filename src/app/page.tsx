@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content/projects";
-import LatestVideo from "@/components/LatestVideo";
+import { getLatestYouTubeVideo } from "@/lib/youtube";
 
-export default function HomePage() {
+export default async function HomePage() {
   const featured = projects.slice(0, 3);
+  const latestVideo = await getLatestYouTubeVideo();
 
   return (
     <main className="tech-bg relative z-0 min-h-screen bg-[#070b12] text-zinc-100">
@@ -27,7 +28,20 @@ export default function HomePage() {
       </section>
 
       <section className="reveal-section reveal-delay-2 mx-auto max-w-6xl px-4 pb-10 sm:px-6 md:pb-14">
-        <LatestVideo />
+        {latestVideo?.videoId && (
+          <>
+            <div className="aspect-video overflow-hidden rounded-xl">
+              <iframe
+                className="h-full w-full"
+                src={`https://www.youtube.com/embed/${latestVideo.videoId}`}
+                title={latestVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <p className="mt-3 text-lg font-medium">{latestVideo.title}</p>
+          </>
+        )}
       </section>
 
       <section className="reveal-section reveal-delay-3 mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16">
