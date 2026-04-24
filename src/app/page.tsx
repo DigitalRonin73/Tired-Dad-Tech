@@ -20,8 +20,8 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#070b12]/30 via-[#070b12]/50 to-[#070b12]/85" />
       </div>
 
-      <section className="reveal-section reveal-delay-1 flex min-h-screen items-center justify-center px-4 sm:px-6">
-        <h1 className="max-w-4xl text-center text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
+      <section className="reveal-section reveal-delay-1 px-4 pt-16 pb-10 text-center sm:px-6 md:pt-24 md:pb-12">
+        <h1 className="max-w-4xl mx-auto text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
           The Lab Opens When the House Goes Quiet.
         </h1>
       </section>

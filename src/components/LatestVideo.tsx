@@ -23,17 +23,13 @@ export default function LatestVideo() {
 
   if (failed) {
     return (
-      <div className="flex aspect-video items-center justify-center rounded-xl bg-[#050a14] text-zinc-400">
-        Latest long-form video unavailable right now.
-      </div>
+      <p className="text-zinc-400">Latest long-form video unavailable right now.</p>
     );
   }
 
   if (!video) {
     return (
-      <div className="flex aspect-video items-center justify-center rounded-xl bg-[#050a14] text-zinc-400">
-        Loading...
-      </div>
+      <p className="text-zinc-400">Loading...</p>
     );
   }
 
