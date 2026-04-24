@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content/projects";
-import { getLatestYouTubeVideo } from "@/lib/youtube";
+import LatestVideo from "@/components/LatestVideo";
 
-export default async function HomePage() {
+export default function HomePage() {
   const featured = projects.slice(0, 3);
-  const latestVideo = await getLatestYouTubeVideo();
 
   return (
     <main className="tech-bg relative z-0 min-h-screen bg-[#070b12] text-zinc-100">
@@ -27,40 +26,8 @@ export default async function HomePage() {
         </h1>
       </section>
 
-      <section className="reveal-section reveal-delay-2 mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14">
-        <article className="rounded-2xl border border-cyan-400/25 bg-[#0a1220] p-6">
-          <div>
-            <h2 className="mb-4 text-2xl font-semibold">Latest YouTube Upload</h2>
-
-            <div className="aspect-video overflow-hidden rounded-xl border border-zinc-700/90 shadow-[0_0_0_1px_rgba(34,211,238,0.08)]">
-              {latestVideo?.videoId ? (
-                <iframe
-                  className="h-full w-full"
-                  src={`https://www.youtube.com/embed/${latestVideo.videoId}`}
-                  title={latestVideo.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center bg-[#050a14] text-zinc-400">
-                  Latest long-form video unavailable right now.
-                </div>
-              )}
-            </div>
-            <p className="mt-3 text-lg font-medium">
-              {latestVideo?.title ?? "Newest long-form upload from the channel"}
-            </p>
-            <a
-              className="mt-2 inline-block text-cyan-300 hover:text-cyan-200"
-              href="https://www.youtube.com/@TiredDadTech/videos"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Watch on YouTube →
-            </a>
-          </div>
-        </article>
-
+      <section className="reveal-section reveal-delay-2 mx-auto max-w-6xl px-4 pb-10 sm:px-6 md:pb-14">
+        <LatestVideo />
       </section>
 
       <section className="reveal-section reveal-delay-3 mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16">
