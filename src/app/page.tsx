@@ -11,39 +11,14 @@ export default async function HomePage() {
     <main className="tech-bg relative z-0 min-h-screen bg-[#070b12] text-zinc-100">
       <div className="pointer-events-none fixed inset-0 -z-10">
         <Image
-          src="/images/hero-lab-console.jpg"
+          src="/images/heroimage.png"
           alt="Tired Dad Tech lab hero"
           fill
           priority
           sizes="100vw"
           className="parallax-hero object-cover object-center opacity-72"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#070b12]/35 via-[#070b12]/60 to-[#070b12]/92" />
-      </div>
-
-      <div className="sticky top-3 z-40 mx-auto mt-3 w-[calc(100%-1rem)] max-w-6xl px-2 sm:px-0">
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-          <Link className="nav-pill nav-pill-strong" href="/war-room">
-            <span>The Command Center</span>
-            <span aria-hidden>↗</span>
-          </Link>
-          <Link className="nav-pill nav-pill-strong" href="/vault">
-            <span>The Project Vault</span>
-            <span aria-hidden>↗</span>
-          </Link>
-          <Link className="nav-pill nav-pill-strong" href="/pc-builds">
-            <span>Custom Rigs</span>
-            <span aria-hidden>↗</span>
-          </Link>
-          <Link className="nav-pill nav-pill-strong" href="/poc-mobile">
-            <span>Mobile POC</span>
-            <span aria-hidden>↗</span>
-          </Link>
-          <Link className="nav-pill nav-pill-strong" href="/linux-lab">
-            <span>Linux Basics</span>
-            <span aria-hidden>↗</span>
-          </Link>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#070b12]/60 via-[#070b12]/70 to-[#070b12]/95" />
       </div>
 
       <section className="reveal-section reveal-delay-1 relative isolate border-b border-cyan-400/20">
@@ -77,13 +52,7 @@ export default async function HomePage() {
               href="/vault"
               className="cta-sheen rounded-xl bg-cyan-400 px-5 py-3 text-center font-medium text-[#07121f] hover:bg-cyan-300"
             >
-              Get the details
-            </Link>
-            <Link
-              href="/war-room"
-              className="cta-sheen rounded-xl border border-cyan-300/40 px-5 py-3 text-center font-medium text-cyan-100 hover:bg-cyan-400/10"
-            >
-              Enter the Command Center
+              See the Latest Project
             </Link>
             <a
               href="https://www.youtube.com/@TiredDadTech"
