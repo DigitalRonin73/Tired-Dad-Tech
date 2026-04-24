@@ -23,60 +23,17 @@ export default async function HomePage() {
 
       <section className="reveal-section reveal-delay-1 relative isolate border-b border-cyan-400/20">
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-24">
-          <div className="relative left-1/2 mb-8 h-[180px] w-screen -translate-x-1/2 overflow-hidden border-y border-cyan-300/40 bg-[#071425] shadow-[0_8px_24px_rgba(34,211,238,0.18)] sm:h-[220px] md:h-[280px]">
-            <Image
-              src="/images/brand-banner.jpg"
-              alt="Tired Dad Tech banner"
-              fill
-              sizes="100vw"
-              className="object-cover object-center"
-              priority
-            />
-          </div>
-
 
           <h1 className="max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
             The Lab Opens When the House Goes Quiet.
           </h1>
 
-          <p className="mt-5 max-w-3xl text-base text-zinc-200 sm:text-lg">
-            I build high-performance systems in the margins of a busy life. From engineering
-            budget-friendly SFF PCs and custom 3D-printed mods to stripping the bloat with Linux,
-            my mission is to document the exact path to a faster, leaner, and more efficient home lab.
-            If it saves time, cuts costs, or stabilizes the network, I’m building it, tuning it,
-            and documenting the exact process so you can do the same.
-          </p>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-            <Link
-              href="/vault"
-              className="cta-sheen rounded-xl bg-cyan-400 px-5 py-3 text-center font-medium text-[#07121f] hover:bg-cyan-300"
-            >
-              See the Latest Project
-            </Link>
-            <a
-              href="https://www.youtube.com/@TiredDadTech"
-              target="_blank"
-              rel="noreferrer"
-              className="cta-sheen rounded-xl border border-amber-300/40 px-5 py-3 text-center font-medium text-amber-100 hover:bg-amber-400/10"
-            >
-              Join the tired ranks
-            </a>
-          </div>
         </div>
       </section>
 
       <section className="reveal-section reveal-delay-2 mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14">
-        <article className="relative overflow-hidden rounded-2xl border border-cyan-400/25 bg-[#0a1220]/85 p-6">
-          <Image
-            src="/images/section-latest-video.jpg"
-            alt="Latest video section background"
-            fill
-            sizes="(max-width: 768px) 100vw, 70vw"
-            className="object-cover opacity-56"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#081321]/24 via-[#0a1220]/38 to-[#0a1220]/55" />
-          <div className="relative z-10">
+        <article className="rounded-2xl border border-cyan-400/25 bg-[#0a1220] p-6">
+          <div>
             <h2 className="mb-4 text-2xl font-semibold">Latest YouTube Upload</h2>
 
             <div className="aspect-video overflow-hidden rounded-xl border border-zinc-700/90 shadow-[0_0_0_1px_rgba(34,211,238,0.08)]">
