@@ -18,7 +18,7 @@ export default async function HomePage() {
           sizes="100vw"
           className="parallax-hero object-cover object-center opacity-72"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#070b12]/60 via-[#070b12]/70 to-[#070b12]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#070b12]/30 via-[#070b12]/50 to-[#070b12]/85" />
       </div>
 
       <section className="reveal-section reveal-delay-1 relative isolate border-b border-cyan-400/20">
@@ -66,7 +66,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="reveal-section reveal-delay-2 mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:px-6 md:gap-8 md:py-14 md:grid-cols-[1.4fr_1fr]">
+      <section className="reveal-section reveal-delay-2 mx-auto max-w-6xl px-4 py-10 sm:px-6 md:py-14">
         <article className="relative overflow-hidden rounded-2xl border border-cyan-400/25 bg-[#0a1220]/85 p-6">
           <Image
             src="/images/section-latest-video.jpg"
@@ -108,42 +108,6 @@ export default async function HomePage() {
           </div>
         </article>
 
-        <aside className="relative overflow-hidden rounded-2xl border border-cyan-400/25 bg-[#0a1220]/90 p-6">
-          <Image
-            src="/images/graphic-dashboard.jpg"
-            alt="YouTube channel section background"
-            fill
-            sizes="(max-width: 768px) 100vw, 35vw"
-            className="object-cover opacity-52"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#081321]/22 via-[#0a1220]/34 to-[#0a1220]/52" />
-          <div className="relative z-10">
-            <h3 className="mb-3 text-xl font-semibold">Watch Tired Dad Tech</h3>
-            <p className="mb-4 text-sm leading-6 text-zinc-200">
-              Built after bedtime, tested in the real world.
-              From budget SFF builds to Linux-powered home-lab experiments, every video is focused on performance, stability, and doing more with less.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="https://www.youtube.com/@TiredDadTech"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-lg border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 text-sm font-semibold text-cyan-100 hover:bg-cyan-400/20"
-              >
-                Visit Channel
-              </a>
-              <a
-                href="https://www.youtube.com/@TiredDadTech?sub_confirmation=1"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border border-red-700/80 bg-[#ff0000] px-4 py-2 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(255,0,0,0.35)] hover:bg-[#e00000]"
-              >
-                <span aria-hidden>▶</span>
-                <span>Subscribe</span>
-              </a>
-            </div>
-          </div>
-        </aside>
       </section>
 
       <section className="reveal-section reveal-delay-3 mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16">
