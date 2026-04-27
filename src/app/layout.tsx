@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Tired Dad Tech",
   description:
-    "Tired Dad Tech — The War Room and Project Vault for homelab, computer builds, and practical engineering projects.",
+    "Tired Dad Tech is Scott's project vault for PC builds, Linux gaming rigs, homelab gear, local AI experiments, and YouTube build notes.",
 };
 
 export default function RootLayout({
@@ -31,19 +31,15 @@ export default function RootLayout({
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
             <Link className="nav-pill nav-pill-strong" href="/vault">
               <span>Projects</span>
-              <span aria-hidden>↗</span>
             </Link>
             <Link className="nav-pill nav-pill-strong" href="/pc-builds">
               <span>Builds</span>
-              <span aria-hidden>↗</span>
             </Link>
             <Link className="nav-pill nav-pill-strong" href="/linux-lab">
               <span>Linux &amp; Homelab</span>
-              <span aria-hidden>↗</span>
             </Link>
             <Link className="nav-pill nav-pill-strong" href="/war-room">
               <span>About</span>
-              <span aria-hidden>↗</span>
             </Link>
           </div>
         </nav>

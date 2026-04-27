@@ -3,6 +3,33 @@ import Link from "next/link";
 import { projects } from "@/content/projects";
 import { getLatestYouTubeVideo } from "@/lib/youtube";
 
+const startHereLinks = [
+  {
+    title: "Project Vault",
+    description: "Build logs, commands, notes, and the weird little fixes that made each project work.",
+    href: "/vault",
+    label: "Browse projects",
+  },
+  {
+    title: "PC Builds",
+    description: "Parts lists, photos, specs, and YouTube walkthroughs for gaming rigs and budget rescues.",
+    href: "/pc-builds",
+    label: "See the builds",
+  },
+  {
+    title: "Linux & Homelab",
+    description: "Beginner-friendly Linux practice, homelab notes, and self-hosted experiments.",
+    href: "/linux-lab",
+    label: "Open the lab",
+  },
+  {
+    title: "The War Room",
+    description: "The office, rack, desk setup, tools, and workflow behind Tired Dad Tech.",
+    href: "/war-room",
+    label: "Tour the setup",
+  },
+];
+
 export default async function HomePage() {
   const featured = projects.slice(0, 3);
   const latestVideo = await getLatestYouTubeVideo();
@@ -21,16 +48,52 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#070b12]/30 via-[#070b12]/50 to-[#070b12]/85" />
       </div>
 
-      <section className="reveal-section reveal-delay-1 px-4 pt-16 pb-10 text-center sm:px-6 md:pt-24 md:pb-12">
-        <h1 className="max-w-4xl mx-auto text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
+      <section className="reveal-section reveal-delay-1 mx-auto max-w-5xl px-4 pt-16 pb-8 text-center sm:px-6 md:pt-24 md:pb-10">
+        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300">
+          Tired Dad Tech
+        </p>
+        <h1 className="mx-auto mt-4 max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
           The Lab Opens When the House Goes Quiet.
         </h1>
+        <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-zinc-300 sm:text-lg">
+          I&apos;m Scott: a retired vet, dad, and late-night builder. I make PC projects, Linux gaming rigs, homelab gear, and local AI experiments after dad duty winds down, then document the steps so someone else can follow the trail.
+        </p>
+        <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link
+            href="/vault"
+            className="inline-flex w-full items-center justify-center rounded-lg border border-cyan-300/40 bg-cyan-400/15 px-5 py-3 text-sm font-semibold text-cyan-50 transition hover:bg-cyan-400/25 sm:w-auto"
+          >
+            Start with the project vault
+          </Link>
+          <Link
+            href="/war-room"
+            className="inline-flex w-full items-center justify-center rounded-lg border border-zinc-600/80 bg-black/20 px-5 py-3 text-sm font-semibold text-zinc-100 transition hover:border-cyan-300/50 hover:text-cyan-100 sm:w-auto"
+          >
+            See the War Room
+          </Link>
+        </div>
       </section>
 
       <section className="reveal-section reveal-delay-2 mx-auto max-w-6xl px-4 pb-10 sm:px-6 md:pb-14">
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Latest from YouTube
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">Watch the newest build</h2>
+          </div>
+          <a
+            className="text-cyan-300 hover:text-cyan-200"
+            href="https://www.youtube.com/@TiredDadTech"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Visit the channel →
+          </a>
+        </div>
         {latestVideo?.videoId && (
           <>
-            <div className="aspect-video overflow-hidden rounded-xl">
+            <div className="aspect-video overflow-hidden rounded-xl border border-cyan-300/20 bg-black/40 shadow-2xl shadow-cyan-950/30">
               <iframe
                 className="h-full w-full"
                 src={`https://www.youtube.com/embed/${latestVideo.videoId}`}
@@ -45,8 +108,35 @@ export default async function HomePage() {
       </section>
 
       <section className="reveal-section reveal-delay-3 mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16">
+        <div className="mb-10">
+          <div className="mb-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Start here
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">Pick your rabbit hole</h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {startHereLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-xl border border-cyan-400/20 bg-[#0a1220]/90 p-5 transition hover:border-cyan-300/50 hover:bg-[#0d1729]"
+              >
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-300 md:min-h-[6rem]">{item.description}</p>
+                <p className="mt-4 text-sm font-semibold text-cyan-300">{item.label} →</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-2xl font-semibold">Featured Projects</h2>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
+              Build notes
+            </p>
+            <h2 className="mt-2 text-2xl font-semibold">Featured Projects</h2>
+          </div>
           <Link className="text-cyan-300 hover:text-cyan-200" href="/vault">
             Get the details →
           </Link>

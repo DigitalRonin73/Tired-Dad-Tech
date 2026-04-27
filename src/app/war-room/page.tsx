@@ -60,7 +60,7 @@ export default function WarRoomPage() {
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
               <h3 className="font-semibold text-cyan-200">Monitor</h3>
-              <p className="mt-2 text-zinc-200">Samsung 49" Ultrawide OLED</p>
+              <p className="mt-2 text-zinc-200">Samsung 49&quot; Ultrawide OLED</p>
             </div>
 
             <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
@@ -92,7 +92,7 @@ export default function WarRoomPage() {
           <div className="rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
             <h2 className="text-2xl font-semibold">Primary Desk + Furniture</h2>
             <p className="mt-3 text-zinc-300 leading-7">
-              The main desk runs on a FlexiSpot 60" top with IKEA Alex support on both sides:
+              The main desk runs on a FlexiSpot 60&quot; top with IKEA Alex support on both sides:
               drawers on the right and an Alex cabinet on the left. It keeps the setup stable,
               clean, and easy to service while still hiding the utility side of the room.
             </p>
@@ -112,7 +112,7 @@ export default function WarRoomPage() {
             <p className="mt-3 text-zinc-300 leading-7">
               There is a mirrored setup for the second desk: same center cabinet concept,
               with IKEA Alex drawers on the left. It doubles as my test bench and Aaron’s
-              setup—though when Aaron wants to game and steals my main PC and 49" ultrawide,
+              setup—though when Aaron wants to game and steals my main PC and 49&quot; ultrawide,
               it quickly becomes my workstation too.
             </p>
             <div className="mt-4 rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4 text-sm text-zinc-200">
@@ -212,7 +212,7 @@ export default function WarRoomPage() {
           <h2 className="text-2xl font-semibold">Inside the Cabinet: Home + Homelab Core</h2>
           <p className="mt-3 text-zinc-300 leading-7">
             Inside the cabinet is the infrastructure layer that quietly runs the house and the home lab.
-            The rack is a 10" DeskGeek 8U unit. I was genuinely surprised by the build quality when it arrived.
+            The rack is a 10&quot; DeskGeek 8U unit. I was genuinely surprised by the build quality when it arrived.
             For thermal control, I cut a rear vent opening and installed a Noctua fan converted to USB power,
             so it can be powered directly from available USB ports in-cabinet.
           </p>
@@ -221,7 +221,7 @@ export default function WarRoomPage() {
             <div className="rounded-xl border border-cyan-300/20 bg-[#0e1727] p-4">
               <h3 className="font-semibold text-cyan-200">Rack + Core Hardware</h3>
               <ul className="mt-2 space-y-1 text-sm text-zinc-200">
-                <li>10" DeskGeek 8U rack</li>
+                <li>10&quot; DeskGeek 8U rack</li>
                 <li>Beelink SER5 Pro (rack-mounted)</li>
                 <li>Custom 3D-printed holder for rack fitment</li>
                 <li>M1 Mac mini (16GB) for local LLM workloads</li>
