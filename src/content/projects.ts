@@ -8,10 +8,159 @@ export type Project = {
   publishedAt: string;
   body: string[];
   imageUrls?: string[];
+  youtube?: {
+    videoId: string;
+    title: string;
+  };
+  guide?: {
+    intro?: string;
+    prerequisites?: string[];
+    steps: Array<{
+      title: string;
+      description?: string;
+      commands?: Array<{ title: string; code: string }>;
+    }>;
+    results?: {
+      summary: string[];
+      image?: {
+        src: string;
+        alt: string;
+        caption?: string;
+      };
+      table: Array<Record<string, string>>;
+    };
+  };
 };
 
 // Easy to edit later: add, remove, or update project objects here.
 export const projects: Project[] = [
+  {
+    slug: "running-gemma-4-on-amd-bc250-with-ollama",
+    title: "Running Gemma 4 on an AMD BC-250 with Ollama",
+    category: "Project",
+    status: "Completed",
+    summary:
+      "A practical path for running Gemma 4 E2B locally on an AMD BC-250 mini PC with CachyOS, Ollama, and llama-benchy.",
+    stack: ["AMD BC-250", "CachyOS", "Ollama", "Gemma 4 E2B", "llama-benchy", "SSH"],
+    publishedAt: "2026-04-27",
+    body: [
+      "This guide covers the exact local AI flow: enable SSH on the BC-250, connect from a main machine, install Ollama, pull Gemma 4 E2B, and benchmark the result with llama-benchy.",
+      "The BC-250 is a strange but useful little lab box. With CachyOS installed and 8GB of shared VRAM available to the integrated GPU, Gemma 4 E2B lands in the sweet spot for a small local model test.",
+      "The goal here is not a cloud-scale AI rig. The goal is a repeatable after-hours lab setup that proves what this hardware can actually do.",
+    ],
+    youtube: {
+      videoId: "C4PqnPw-w7E",
+      title: "Gemma 4 AI on a $140 BC250 It Got Messy",
+    },
+    guide: {
+      intro:
+        "Run these steps from the BC-250 unless the step specifically says to connect from your main machine.",
+      prerequisites: [
+        "AMD BC-250 running CachyOS",
+        "SSH access from a remote machine",
+        "Internet connection",
+      ],
+      steps: [
+        {
+          title: "1) Enable SSH on the BC-250",
+          description:
+            "Install OpenSSH, start the daemon, allow SSH through UFW if you use it, then check the machine IP address.",
+          commands: [
+            { title: "Install OpenSSH", code: "sudo pacman -S openssh" },
+            { title: "Enable and start SSH", code: "sudo systemctl enable --now sshd" },
+            { title: "Allow SSH through UFW", code: "sudo ufw allow ssh\nsudo ufw reload" },
+            { title: "Find the BC-250 IP address", code: "ip a" },
+          ],
+        },
+        {
+          title: "2) Connect from your main machine",
+          description:
+            "Replace the username and IP address with the account and address from your BC-250.",
+          commands: [
+            { title: "SSH into the BC-250", code: "ssh username@192.168.x.x" },
+          ],
+        },
+        {
+          title: "3) Install Ollama",
+          description:
+            "Install Ollama and enable the service so it is ready for local model serving.",
+          commands: [
+            { title: "Install Ollama", code: "curl -fsSL https://ollama.com/install.sh | sh" },
+            { title: "Enable and start Ollama", code: "sudo systemctl enable --now ollama" },
+          ],
+        },
+        {
+          title: "4) Pull Gemma 4 E2B",
+          description:
+            "Gemma 4 E2B is a 7.2GB Mixture of Experts model, which fits the BC-250's 8GB shared VRAM allocation better than larger local models.",
+          commands: [
+            { title: "Pull the model", code: "ollama pull gemma4:e2b" },
+          ],
+        },
+        {
+          title: "5) Test the model",
+          description:
+            "Run a quick prompt before benchmarking so you know the model is installed and responding.",
+          commands: [
+            {
+              title: "Run a quick test prompt",
+              code: 'ollama run gemma4:e2b "Explain how a CPU and GPU work together when running an AI model. Keep it concise."',
+            },
+          ],
+        },
+        {
+          title: "6) Install llama-benchy",
+          description:
+            "Install the tooling, clone llama-benchy, and sync the Python environment with uv.",
+          commands: [
+            { title: "Install Python, Git, and uv", code: "sudo pacman -Syu python git uv --noconfirm" },
+            { title: "Clone llama-benchy", code: "git clone https://github.com/eugr/llama-benchy.git" },
+            { title: "Sync the benchmark environment", code: "cd llama-benchy\nuv sync" },
+          ],
+        },
+        {
+          title: "7) Run the benchmark",
+          description:
+            "Point llama-benchy at Ollama's OpenAI-compatible local endpoint and test Gemma 4 E2B.",
+          commands: [
+            {
+              title: "Benchmark Gemma 4 E2B",
+              code: "uv run llama-benchy --base-url http://localhost:11434/v1 --model gemma4:e2b",
+            },
+          ],
+        },
+      ],
+      results: {
+        summary: [
+          "Average API latency: 2.85 ms",
+          "Prompt processing: 49 tokens per second",
+          "Token generation: 17 tokens per second",
+          "Hardware: AMD BC-250 integrated GPU with 8GB shared VRAM",
+        ],
+        image: {
+          src: "/images/projects/gemma4-bc250/benchmark.jpg",
+          alt: "llama-benchy terminal benchmark results for Gemma 4 E2B on the AMD BC-250",
+          caption: "llama-benchy 0.3.5 benchmark output captured from the BC-250 test run.",
+        },
+        table: [
+          {
+            Model: "gemma4:e2b",
+            Test: "pp2048",
+            Speed: "49.08 t/s",
+            Peak: "-",
+            Notes: "Prompt processing",
+          },
+          {
+            Model: "gemma4:e2b",
+            Test: "tg32",
+            Speed: "17.07 t/s",
+            Peak: "17.67 t/s",
+            Notes: "Token generation",
+          },
+        ],
+      },
+    },
+  },
   {
     slug: "jarvis-self-hosted-assistant",
     title: "Jarvis: The Private Voice Assistant",

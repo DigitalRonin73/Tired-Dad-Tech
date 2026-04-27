@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import ProjectCard from "@/components/ProjectCard";
 import type { Project } from "@/content/projects";
 
 type Props = {
@@ -69,30 +68,7 @@ export default function ProjectVaultBrowser({ projects }: Props) {
 
       <div className="mt-10 grid gap-4 md:grid-cols-2">
         {filteredProjects.map((project) => (
-          <Link
-            key={project.slug}
-            href={`/vault/${project.slug}`}
-            className="rounded-2xl border border-cyan-400/20 bg-[#0a1220] p-6 transition hover:border-cyan-300/50 hover:bg-[#0d1729]"
-          >
-            <p className="text-xs uppercase tracking-[0.16em] text-cyan-300">
-              {project.category} · {project.status}
-            </p>
-
-            {project.imageUrls?.[0] ? (
-              <div className="relative mt-3 aspect-video overflow-hidden rounded-lg border border-cyan-300/20">
-                <Image
-                  src={project.imageUrls[0]}
-                  alt={`${project.title} thumbnail`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-            ) : null}
-
-            <h2 className="mt-3 text-2xl font-semibold">{project.title}</h2>
-            <p className="mt-2 text-zinc-300">{project.summary}</p>
-          </Link>
+          <ProjectCard key={project.slug} project={project} />
         ))}
       </div>
 

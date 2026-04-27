@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/content/projects";
@@ -45,6 +46,9 @@ export default async function ProjectDetailPage({ params }: Props) {
     { title: "4) Start gateway daemon", code: "openclaw gateway start" },
     { title: "5) Verify full status", code: "openclaw status" },
   ];
+  const resultColumns = project.guide?.results?.table[0]
+    ? Object.keys(project.guide.results.table[0])
+    : [];
 
   return (
     <main className="tech-bg min-h-screen bg-[#070b12] text-zinc-100">
@@ -74,6 +78,125 @@ export default async function ProjectDetailPage({ params }: Props) {
           <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220] p-6">
             <h2 className="text-2xl font-semibold">Project Gallery</h2>
             <ProjectGallery title={project.title} imageUrls={project.imageUrls} />
+          </section>
+        ) : null}
+
+        {project.youtube ? (
+          <section className="mt-10 space-y-4 rounded-2xl border border-cyan-400/20 bg-[#0a1220] p-6">
+            <div>
+              <h2 className="text-2xl font-semibold">Watch The Build</h2>
+              <p className="mt-2 text-zinc-300">{project.youtube.title}</p>
+            </div>
+            <div className="aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
+              <iframe
+                className="h-full w-full"
+                src={`https://www.youtube.com/embed/${project.youtube.videoId}`}
+                title={project.youtube.title}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </section>
+        ) : null}
+
+        {project.guide ? (
+          <section className="mt-10 space-y-6 rounded-2xl border border-cyan-400/20 bg-[#0a1220] p-6">
+            <div>
+              <h2 className="text-2xl font-semibold">Build Guide</h2>
+              {project.guide.intro ? (
+                <p className="mt-3 text-zinc-300">{project.guide.intro}</p>
+              ) : null}
+            </div>
+
+            {project.guide.prerequisites?.length ? (
+              <div className="rounded-xl border border-cyan-300/20 bg-[#07101d] p-4">
+                <h3 className="text-lg font-semibold">Prerequisites</h3>
+                <ul className="mt-3 list-disc space-y-1 pl-5 text-zinc-300">
+                  {project.guide.prerequisites.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            <div className="space-y-6">
+              {project.guide.steps.map((step) => (
+                <section key={step.title} className="space-y-3">
+                  <div>
+                    <h3 className="text-xl font-semibold">{step.title}</h3>
+                    {step.description ? (
+                      <p className="mt-2 text-zinc-300">{step.description}</p>
+                    ) : null}
+                  </div>
+
+                  {step.commands?.map((command) => (
+                    <CopyCodeBlock
+                      key={`${step.title}-${command.title}`}
+                      title={command.title}
+                      code={command.code}
+                    />
+                  ))}
+                </section>
+              ))}
+            </div>
+
+            {project.guide.results ? (
+              <div className="space-y-4 rounded-xl border border-cyan-300/20 bg-[#07101d] p-4">
+                <h3 className="text-lg font-semibold">Results</h3>
+                <ul className="list-disc space-y-1 pl-5 text-zinc-300">
+                  {project.guide.results.summary.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+
+                {resultColumns.length ? (
+                  <div className="overflow-x-auto rounded-lg border border-zinc-700/80">
+                    <table className="min-w-full divide-y divide-zinc-700 text-left text-sm">
+                      <thead className="bg-black/20 text-cyan-200">
+                        <tr>
+                          {resultColumns.map((column) => (
+                            <th key={column} scope="col" className="px-4 py-3 font-medium">
+                              {column}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-zinc-800 text-zinc-300">
+                        {project.guide.results.table.map((row) => (
+                          <tr key={resultColumns.map((column) => row[column]).join("-")}>
+                            {resultColumns.map((column) => (
+                              <td key={`${row.Model}-${row.Test}-${column}`} className="px-4 py-3">
+                                {row[column]}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : null}
+
+                {project.guide.results.image ? (
+                  <figure className="overflow-hidden rounded-lg border border-zinc-700/80 bg-black/30">
+                    <div className="overflow-x-auto">
+                      <Image
+                        src={project.guide.results.image.src}
+                        alt={project.guide.results.image.alt}
+                        width={1500}
+                        height={500}
+                        className="h-auto min-w-[760px] sm:min-w-0 sm:w-full"
+                      />
+                    </div>
+                    {project.guide.results.image.caption ? (
+                      <figcaption className="border-t border-zinc-800 px-4 py-3 text-sm text-zinc-400">
+                        Original benchmark screenshot: {project.guide.results.image.caption}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+                ) : null}
+              </div>
+            ) : null}
           </section>
         ) : null}
 
