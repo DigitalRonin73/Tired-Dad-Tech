@@ -56,12 +56,12 @@ export default async function HomePage() {
       </div>
 
       <section className="reveal-section reveal-delay-1 mx-auto max-w-5xl px-4 pt-16 pb-8 text-center sm:px-6 md:pt-24 md:pb-10">
-        <div className="mx-auto max-w-3xl overflow-hidden rounded-xl border border-cyan-300/20 bg-black/35 shadow-2xl shadow-cyan-950/30">
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-xl border border-cyan-300/20 bg-black/35 shadow-2xl shadow-cyan-950/30">
           <Image
-            src="/images/brand-banner.jpg"
+            src="/images/hero-tired-dad-tech-lab.png"
             alt="Tired Dad Tech"
-            width={1280}
-            height={511}
+            width={1672}
+            height={941}
             priority
             className="h-auto w-full"
           />
