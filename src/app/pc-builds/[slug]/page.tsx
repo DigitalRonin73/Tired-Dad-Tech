@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -33,14 +34,35 @@ function toYouTubeEmbedUrl(url?: string) {
   return null;
 }
 
+function isPlaceholderImage(src: string) {
+  return src.includes("/images/card-computer-builds.jpg");
+}
+
 export async function generateStaticParams() {
   return pcBuilds.map((build) => ({ slug: build.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const build = pcBuilds.find((item) => item.slug === slug);
+
+  if (!build) {
+    return {
+      title: "PC Build | Tired Dad Tech",
+    };
+  }
+
+  return {
+    title: `${build.title} | Tired Dad Tech`,
+    description: `${build.summary} Parts: ${build.specs.processor}, ${build.specs.gpu}, ${build.specs.case}.`,
+  };
 }
 
 export default async function PcBuildDetailPage({ params }: Props) {
   const { slug } = await params;
   const build = pcBuilds.find((item) => item.slug === slug);
   if (!build) notFound();
+  const realImages = build.imageUrls.filter((img) => !isPlaceholderImage(img));
 
   return (
     <main className="tech-bg min-h-screen bg-[#070b12] text-zinc-100">
@@ -70,16 +92,18 @@ export default async function PcBuildDetailPage({ params }: Props) {
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
-          <h2 className="text-2xl font-semibold">Build Gallery</h2>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {build.imageUrls.map((img, idx) => (
-              <div key={`${img}-${idx}`} className="relative aspect-video overflow-hidden rounded-lg border border-cyan-300/20">
-                <Image src={img} alt={`${build.title} image ${idx + 1}`} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" />
-              </div>
-            ))}
-          </div>
-        </section>
+        {realImages.length ? (
+          <section className="mt-8 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
+            <h2 className="text-2xl font-semibold">Build Gallery</h2>
+            <div className="mt-4 grid gap-4 md:grid-cols-3">
+              {realImages.map((img, idx) => (
+                <div key={`${img}-${idx}`} className="relative aspect-video overflow-hidden rounded-lg border border-cyan-300/20">
+                  <Image src={img} alt={`${build.title} image ${idx + 1}`} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" />
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="mt-8 rounded-2xl border border-cyan-400/20 bg-[#0a1220]/95 p-6">
           <h2 className="text-2xl font-semibold">YouTube Build Video</h2>

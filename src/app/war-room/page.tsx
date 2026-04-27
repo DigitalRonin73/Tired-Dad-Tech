@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "The War Room | Tired Dad Tech",
+  description:
+    "Inside Scott's Tired Dad Tech office, main PC, desk setup, homelab rack, NAS, 3D printer, filming space, and project workflow.",
+};
 
 export default function WarRoomPage() {
   return (
@@ -253,9 +260,6 @@ export default function WarRoomPage() {
               sizes="(max-width: 768px) 100vw, 70vw"
               className="object-cover"
             />
-          </div>
-          <div className="mt-3 rounded-xl border border-dashed border-cyan-300/30 bg-[#0e1727] p-4 text-sm text-zinc-300">
-            Photo placeholder: cabinet interior/cable management (to be added)
           </div>
         </section>
 

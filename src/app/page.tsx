@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content/projects";
 import { getLatestYouTubeVideo } from "@/lib/youtube";
+
+export const metadata: Metadata = {
+  title: "Tired Dad Tech | PC Builds, Linux, Homelab, and Local AI",
+  description:
+    "Scott's Tired Dad Tech project vault for PC builds, Linux gaming rigs, homelab gear, local AI experiments, YouTube videos, and repeatable build notes.",
+};
 
 const startHereLinks = [
   {
@@ -49,10 +56,20 @@ export default async function HomePage() {
       </div>
 
       <section className="reveal-section reveal-delay-1 mx-auto max-w-5xl px-4 pt-16 pb-8 text-center sm:px-6 md:pt-24 md:pb-10">
-        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300">
-          Tired Dad Tech
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-xl border border-cyan-300/20 bg-black/35 shadow-2xl shadow-cyan-950/30">
+          <Image
+            src="/images/brand-banner.jpg"
+            alt="Tired Dad Tech"
+            width={1280}
+            height={511}
+            priority
+            className="h-auto w-full"
+          />
+        </div>
+        <p className="mt-5 text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300">
+          Retired Vet • Dad • Late-Night Builder
         </p>
-        <h1 className="mx-auto mt-4 max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
+        <h1 className="mx-auto mt-3 max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
           The Lab Opens When the House Goes Quiet.
         </h1>
         <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-zinc-300 sm:text-lg">

@@ -27,8 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className="sticky top-3 z-40 mx-auto mt-3 w-[calc(100%-1rem)] max-w-6xl px-2 sm:px-0">
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+        <nav className="sticky top-0 z-40 mx-auto w-full bg-[#070b12]/95 px-2 py-3 backdrop-blur sm:px-4">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-2 sm:gap-3">
             <Link className="nav-pill nav-pill-strong" href="/vault">
               <span>Projects</span>
             </Link>

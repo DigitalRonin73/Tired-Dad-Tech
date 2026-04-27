@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/content/projects";
@@ -9,6 +10,22 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((item) => item.slug === slug);
+
+  if (!project) {
+    return {
+      title: "Project | Tired Dad Tech",
+    };
+  }
+
+  return {
+    title: `${project.title} | Tired Dad Tech`,
+    description: `${project.summary} Covers ${project.stack.join(", ")} with Tired Dad Tech build notes.`,
+  };
 }
 
 export default async function ProjectDetailPage({ params }: Props) {
