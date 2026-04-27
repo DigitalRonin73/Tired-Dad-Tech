@@ -55,24 +55,24 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#070b12]/30 via-[#070b12]/50 to-[#070b12]/85" />
       </div>
 
-      <section className="reveal-section reveal-delay-1 mx-auto max-w-5xl px-4 pt-16 pb-8 text-center sm:px-6 md:pt-24 md:pb-10">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-xl border border-cyan-300/20 bg-black/35 shadow-2xl shadow-cyan-950/30">
+      <section className="reveal-section reveal-delay-1 mx-auto max-w-5xl px-4 pt-8 pb-7 text-center sm:px-6 md:pt-16 md:pb-10">
+        <div className="relative mx-auto aspect-[16/7] max-w-5xl overflow-hidden rounded-xl border border-cyan-300/20 bg-black/35 shadow-2xl shadow-cyan-950/30 sm:aspect-[1672/941]">
           <Image
             src="/images/hero-tired-dad-tech-lab.png"
             alt="Tired Dad Tech"
-            width={1672}
-            height={941}
+            fill
+            sizes="(max-width: 768px) 100vw, 1024px"
             priority
-            className="h-auto w-full"
+            className="object-cover object-center"
           />
         </div>
         <p className="mt-5 text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300">
           Retired Vet • Dad • Late-Night Builder
         </p>
-        <h1 className="mx-auto mt-3 max-w-4xl text-3xl font-semibold leading-tight sm:text-4xl md:text-6xl">
+        <h1 className="mx-auto mt-3 max-w-4xl text-2xl font-semibold leading-tight sm:text-4xl md:text-6xl">
           The Lab Opens When the House Goes Quiet.
         </h1>
-        <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-zinc-300 sm:text-lg">
+        <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-zinc-300 sm:mt-5 sm:text-lg sm:leading-7">
           I&apos;m Scott: a retired vet, dad, and late-night builder. I make PC projects, Linux gaming rigs, homelab gear, and local AI experiments after dad duty winds down, then document the steps so someone else can follow the trail.
         </p>
         <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">

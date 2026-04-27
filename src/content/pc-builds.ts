@@ -16,8 +16,6 @@ export type PcBuild = {
   };
 };
 
-const placeholderImage = "/images/card-computer-builds.jpg";
-
 // Template-friendly data source. Auto-imported from channel descriptions where possible.
 export const pcBuilds: PcBuild[] = [
   {
@@ -231,7 +229,7 @@ export const pcBuilds: PcBuild[] = [
     summary:
       "Value-focused gaming rig using a liquid-cooled 2080 Super for strong 1440p results.",
     videoUrl: "https://www.youtube.com/watch?v=X_PzKSQP4m0",
-    imageUrls: [placeholderImage],
+    imageUrls: ["/images/pc-builds/under-budget-5700x-2080super/01.jpeg"],
     specs: {
       motherboard: "TBD",
       processor: "AMD Ryzen 7 5700X",
@@ -250,7 +248,7 @@ export const pcBuilds: PcBuild[] = [
     summary:
       "Marketplace rescue build turned into a usable gaming platform with targeted upgrades.",
     videoUrl: "https://www.youtube.com/watch?v=Z_ecfRa0y40",
-    imageUrls: [placeholderImage],
+    imageUrls: ["/images/pc-builds/facebook-200pc-2700x-3060/01.jpeg"],
     specs: {
       motherboard: "TBD",
       processor: "Ryzen 7 2700X",
