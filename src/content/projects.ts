@@ -3,6 +3,9 @@ export type Project = {
   title: string;
   category: "Computer Build" | "Homelab" | "Project";
   status: "In Progress" | "Completed" | "Planned";
+  buildType?: "AI Lab" | "Homelab" | "PC Build" | "Linux" | "Local AI" | "War Room";
+  outcome?: string;
+  difficulty?: "Easy" | "Medium" | "Painful" | "Unknown";
   summary: string;
   stack: string[];
   publishedAt: string;
@@ -30,6 +33,12 @@ export type Project = {
       table: Array<Record<string, string>>;
     };
   };
+  mistakeLog?: Array<{
+    title: string;
+    whatHappened: string;
+    fix: string;
+    lesson: string;
+  }>;
 };
 
 // Easy to edit later: add, remove, or update project objects here.
@@ -39,6 +48,9 @@ export const projects: Project[] = [
     title: "Running Gemma 4 on an AMD BC-250 with Ollama",
     category: "Project",
     status: "Completed",
+    buildType: "AI Lab",
+    outcome: "Gemma 4 E2B ran locally and produced repeatable llama-benchy results.",
+    difficulty: "Medium",
     summary:
       "A practical path for running Gemma 4 E2B locally on an AMD BC-250 mini PC with CachyOS, Ollama, and llama-benchy.",
     stack: ["AMD BC-250", "CachyOS", "Ollama", "Gemma 4 E2B", "llama-benchy", "SSH"],
@@ -160,12 +172,71 @@ export const projects: Project[] = [
         ],
       },
     },
+    mistakeLog: [
+      {
+        title: "SSH was blocked before the real work started",
+        whatHappened:
+          "The BC-250 was reachable on the network, but the first remote workflow stalled because the firewall was blocking SSH.",
+        fix:
+          "Opened SSH through the firewall, reloaded UFW, confirmed the machine IP, and then connected from the main machine.",
+        lesson:
+          "Remote lab work starts with boring network plumbing. Confirm SSH before blaming the AI stack.",
+      },
+      {
+        title: "The first Gemma pulls were the wrong fit",
+        whatHappened:
+          "The first pull attempt failed because the model manifest did not exist, then the larger E4B download proved too big for the BC-250's 8GB VRAM split.",
+        fix:
+          "Dropped down to Gemma 4 E2B, which landed at roughly 7.2GB and fit the hardware better.",
+        lesson:
+          "Model names and VRAM math matter. On this box, the useful answer was the model that fit, not the model that sounded biggest.",
+      },
+      {
+        title: "Ollama fell back to CPU before Vulkan was enabled",
+        whatHappened:
+          "The first status check showed zero VRAM use because experimental Vulkan support was disabled, so Ollama was not using the BC-250 integrated GPU.",
+        fix:
+          "Enabled Vulkan support and checked Ollama status again before treating the benchmark numbers as meaningful.",
+        lesson:
+          "A model can run and still be using the wrong hardware. Always verify VRAM/GPU use before benchmarking.",
+      },
+      {
+        title: "The BC-250 went to sleep and killed the SSH session",
+        whatHappened:
+          "The machine slept during setup and would not wake back up cleanly, which dropped the SSH session mid-project.",
+        fix:
+          "Restarted the BC-250, reconnected over SSH, and continued after disabling sleep became an obvious follow-up task.",
+        lesson:
+          "Headless test boxes need sleep settings handled early. Otherwise the lab machine quietly leaves the lab.",
+      },
+      {
+        title: "Benchmark tooling needed a package mirror refresh",
+        whatHappened:
+          "Installing the Python and uv tooling did not go cleanly at first because the CachyOS package mirrors were out of sync.",
+        fix:
+          "Synced the package database first, then installed Python, Git, and uv before cloning and syncing llama-benchy.",
+        lesson:
+          "If an install command fails on a rolling distro, refresh the package database before rewriting the whole plan.",
+      },
+      {
+        title: "The benchmark needed context, not just numbers",
+        whatHappened:
+          "llama-benchy produced several timing values, including a cold first-token delay around 38 seconds and warmed-up generation around 17 tokens per second.",
+        fix:
+          "Kept the clean results table for quick reading and the original terminal screenshot as proof of the run.",
+        lesson:
+          "Local AI results are easier to trust when the table explains the takeaway and the screenshot preserves the messy evidence.",
+      },
+    ],
   },
   {
     slug: "jarvis-self-hosted-assistant",
     title: "Jarvis: The Private Voice Assistant",
     category: "Project",
     status: "Completed",
+    buildType: "Homelab",
+    outcome: "Private local voice assistant architecture documented.",
+    difficulty: "Medium",
     summary:
       "A fully local, privacy-first alternative to cloud voice assistants where voice data stays on the home network.",
     stack: ["Home Assistant", "Proxmox", "Mac mini M1", "Raspberry Pi", "openWakeWord"],
@@ -188,6 +259,9 @@ export const projects: Project[] = [
     title: "BC-250 Couch Gaming Console",
     category: "Project",
     status: "Completed",
+    buildType: "Linux",
+    outcome: "BC-250 repurposed into a couch-gaming Linux console.",
+    difficulty: "Painful",
     summary:
       "A custom AMD BC-250 APU gaming build tuned for couch use with Linux Bazzite and Steam Big Picture.",
     stack: ["AMD BC-250", "Bazzite Linux", "Steam Big Picture", "Noctua Cooling", "3D Printed Case"],
@@ -222,6 +296,9 @@ export const projects: Project[] = [
     title: "I Turned a BC250 into an AI Agent with OpenClaw",
     category: "Project",
     status: "Completed",
+    buildType: "Local AI",
+    outcome: "BC-250 hardware modded and onboarded into OpenClaw.",
+    difficulty: "Painful",
     summary:
       "Full BC-250 mod and software flow: trim heatsink fins, mount an Arctic P12 Pro 120mm fan, jump ATX 24-pin, install SSD + CachyOS, then onboard OpenClaw.",
     stack: ["AMD BC-250", "Arctic P12 Pro", "ATX 24-pin jumper", "CachyOS", "OpenClaw"],

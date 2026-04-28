@@ -48,12 +48,38 @@ export default function ProjectCard({ project }: Props) {
           <span className="rounded-full border border-zinc-700 bg-black/20 px-3 py-1 font-mono text-xs uppercase tracking-[0.12em] text-zinc-300">
             {project.category}
           </span>
+          {project.buildType ? (
+            <span className="rounded-full border border-orange-400/35 bg-orange-400/10 px-3 py-1 font-mono text-xs uppercase tracking-[0.12em] text-orange-100">
+              {project.buildType}
+            </span>
+          ) : null}
         </div>
 
         <div>
           <h2 className="text-2xl font-semibold text-zinc-100">{project.title}</h2>
           <p className="mt-2 text-sm leading-6 text-zinc-300">{project.summary}</p>
         </div>
+
+        {(project.outcome || project.difficulty) ? (
+          <dl className="grid gap-3 rounded-xl border border-cyan-300/15 bg-black/20 p-3 text-sm sm:grid-cols-2">
+            {project.outcome ? (
+              <div>
+                <dt className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-cyan-300">
+                  Outcome
+                </dt>
+                <dd className="mt-1 text-zinc-300">{project.outcome}</dd>
+              </div>
+            ) : null}
+            {project.difficulty ? (
+              <div>
+                <dt className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-cyan-300">
+                  Difficulty
+                </dt>
+                <dd className="mt-1 text-zinc-300">{project.difficulty}</dd>
+              </div>
+            ) : null}
+          </dl>
+        ) : null}
 
         <div className="flex flex-wrap gap-2 border-t border-cyan-400/15 pt-4">
           {watchUrl ? (

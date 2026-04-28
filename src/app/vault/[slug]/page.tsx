@@ -200,6 +200,51 @@ export default async function ProjectDetailPage({ params }: Props) {
           </section>
         ) : null}
 
+        {project.mistakeLog?.length ? (
+          <section className="mt-10 space-y-4 rounded-2xl border border-orange-400/25 bg-[#0a1220] p-6">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-orange-200">
+                Mistake Log
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold">What Got Messy</h2>
+              <p className="mt-2 text-zinc-300">
+                The part of the build log where the clean version gets honest.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              {project.mistakeLog.map((entry) => (
+                <article
+                  key={entry.title}
+                  className="rounded-xl border border-orange-300/20 bg-black/20 p-4"
+                >
+                  <h3 className="text-lg font-semibold text-orange-100">{entry.title}</h3>
+                  <dl className="mt-3 grid gap-3 text-sm leading-6 text-zinc-300 md:grid-cols-3">
+                    <div>
+                      <dt className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-orange-200">
+                        What happened
+                      </dt>
+                      <dd className="mt-1">{entry.whatHappened}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-orange-200">
+                        Fix
+                      </dt>
+                      <dd className="mt-1">{entry.fix}</dd>
+                    </div>
+                    <div>
+                      <dt className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-orange-200">
+                        Lesson
+                      </dt>
+                      <dd className="mt-1">{entry.lesson}</dd>
+                    </div>
+                  </dl>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         {isBc250CoolingGuide ? (
           <section className="mt-10 space-y-5 rounded-2xl border border-cyan-400/20 bg-[#0a1220] p-6">
             <h2 className="text-2xl font-semibold">BC-250 Cooling Mod + CachyOS + OpenClaw</h2>
