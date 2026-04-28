@@ -252,7 +252,49 @@ export const projects: Project[] = [
       "/images/projects/jarvis/02.jpg",
       "/images/projects/jarvis/03.jpg",
       "/images/projects/jarvis/04.jpg"
-    ]
+    ],
+    youtube: {
+      videoId: "IA1D5KUmFJU",
+      title: "Your Smart Speaker is Spying. I Built a Fix.",
+    },
+    mistakeLog: [
+      {
+        title: "The speakerphone worked almost too well",
+        whatHappened:
+          "The Jabra speakerphone picked up voice clearly across the room, but that sensitivity also caused false wake-word triggers.",
+        fix:
+          "Tuned the wake-word settings down inside Home Assistant until Jarvis stopped waking up at the wrong time.",
+        lesson:
+          "Great microphones are not automatically great smart-home microphones. Sensitivity has to match the room.",
+      },
+      {
+        title: "Audio came through crackly at first",
+        whatHappened:
+          "The speaker itself was good, but the first voice responses came through rough and crackled enough to make the setup feel unfinished.",
+        fix:
+          "Adjusted the voice/audio settings until the response audio came through cleanly.",
+        lesson:
+          "Local voice assistants are a full audio pipeline, not just an AI model. Bad audio can make a good setup feel broken.",
+      },
+      {
+        title: "The LLM path still has a long pause",
+        whatHappened:
+          "Responses were quick from the Mac mini terminal, but routing the same kind of question through Jarvis introduced a 20-30 second delay.",
+        fix:
+          "Kept the local pipeline working while marking latency as the next problem to chase across Home Assistant, Whisper/Piper, Wyoming, and the Mac mini LLM path.",
+        lesson:
+          "A fast model in the terminal does not guarantee a fast voice assistant. Every handoff adds time.",
+      },
+      {
+        title: "The hardware choice was overkill, but it worked",
+        whatHappened:
+          "The conference speakerphone was more hardware than the project really needed, but it solved the room pickup and speaker clarity problem.",
+        fix:
+          "Mounted it with a 3D printed Raspberry Pi stand and reused old hardware already sitting around the house.",
+        lesson:
+          "Overkill is not always bad if it turns spare gear into a reliable build.",
+      },
+    ],
   },
   {
     slug: "bc250-couch-gaming-console",
@@ -311,5 +353,56 @@ export const projects: Project[] = [
       "AI stack: install OpenClaw from terminal, onboard daemon, and validate gateway status.",
     ],
     imageUrls: ["/images/projects/bc250-openclaw-agent/01.jpg"],
+    youtube: {
+      videoId: "N4EEEwr5T-g",
+      title: "I Turned a BC250 into an AI Agent with OpenClaw",
+    },
+    mistakeLog: [
+      {
+        title: "The cooling mod was simple, but tedious",
+        whatHappened:
+          "The BC-250 needed the stock cooling fins cut down before the 120mm fan setup could slide over and force air through the heatsink.",
+        fix:
+          "Trimmed the fins, installed the SSD, flashed BIOS, installed CachyOS, and used a 3D printed fan shroud to guide airflow.",
+        lesson:
+          "The hard part was not complexity. It was patience. Some hardware mods are just slow bench work.",
+      },
+      {
+        title: "Screen recording failed during the first install",
+        whatHappened:
+          "The setup had to be repeated because OBS was not recording during one pass, and another attempt hit an install error.",
+        fix:
+          "Repeated the install flow, captured the npm setup, and moved faster through parts that had already been done multiple times.",
+        lesson:
+          "Content builds need the same checklist as tech builds. If recording matters, verify it before doing the once-per-project steps.",
+      },
+      {
+        title: "The OpenClaw install needed retries",
+        whatHappened:
+          "The npm install flow had already worked before, then failed during the recorded attempt before working on retry.",
+        fix:
+          "Retried the OpenClaw install and continued once the quick start came up cleanly.",
+        lesson:
+          "If a package install fails once after working before, retry cleanly before tearing apart the whole machine.",
+      },
+      {
+        title: "OAuth and Telegram setup happened partly off-camera",
+        whatHappened:
+          "The OpenAI authorization opened a browser window that was not visible in the recording, and Telegram had already been set up from earlier attempts.",
+        fix:
+          "Completed the authorization, kept the current model, selected Telegram, Google search, session memory, and reinstalled the gateway to be safe.",
+        lesson:
+          "Agent setup crosses terminal, browser, and phone workflows. The written notes need to cover what the video cannot show clearly.",
+      },
+      {
+        title: "The BC-250 worked, but value was complicated",
+        whatHappened:
+          "OpenClaw ran on the BC-250, but the total cost changes once you add an NVMe drive, power, fan hardware, and setup time.",
+        fix:
+          "Tested the proof of concept anyway, then compared the total cost against a used ThinkPad that could run OpenClaw more simply.",
+        lesson:
+          "A weird board can be fun and capable, but that does not automatically make it the best dedicated OpenClaw host.",
+      },
+    ],
   },
 ];

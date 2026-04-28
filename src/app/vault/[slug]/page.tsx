@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import { projects } from "@/content/projects";
 import ProjectGallery from "@/components/ProjectGallery";
 import CopyCodeBlock from "@/components/CopyCodeBlock";
-import { getLatestYouTubeVideo } from "@/lib/youtube";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -37,7 +36,6 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   const isBc250CoolingGuide =
     project.slug === "i-turned-a-bc250-into-an-ai-agent-with-openclaw";
-  const latestVideo = isBc250CoolingGuide ? await getLatestYouTubeVideo() : null;
 
   const openClawCommandSteps = [
     { title: "1) Install OpenClaw", code: "curl -fsSL https://openclaw.ai/install.sh | bash" },
@@ -248,19 +246,6 @@ export default async function ProjectDetailPage({ params }: Props) {
         {isBc250CoolingGuide ? (
           <section className="mt-10 space-y-5 rounded-2xl border border-cyan-400/20 bg-[#0a1220] p-6">
             <h2 className="text-2xl font-semibold">BC-250 Cooling Mod + CachyOS + OpenClaw</h2>
-
-            {latestVideo?.videoId ? (
-              <div className="aspect-video overflow-hidden rounded-xl border border-cyan-300/20">
-                <iframe
-                  className="h-full w-full"
-                  src={`https://www.youtube.com/embed/${latestVideo.videoId}`}
-                  title={latestVideo.title}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              </div>
-            ) : null}
 
             <ol className="list-decimal space-y-2 pl-5 text-zinc-300">
               <li>Cut/remove the top section of the stock heatsink fins to open up airflow over the APU block.</li>
