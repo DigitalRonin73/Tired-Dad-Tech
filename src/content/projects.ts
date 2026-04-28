@@ -257,6 +257,63 @@ export const projects: Project[] = [
       videoId: "IA1D5KUmFJU",
       title: "Your Smart Speaker is Spying. I Built a Fix.",
     },
+    guide: {
+      intro:
+        "This is the architecture walkthrough from the video: a local voice assistant stack built from hardware that was already sitting around the house.",
+      prerequisites: [
+        "Home Assistant running on a mini PC or Proxmox host",
+        "Mac mini M1 or another local machine for the LLM side",
+        "Raspberry Pi 4 for the physical voice satellite",
+        "Jabra speakerphone or another good USB speaker/microphone",
+        "openWakeWord, Wyoming satellite, Whisper, and Piper configured through Home Assistant",
+      ],
+      steps: [
+        {
+          title: "1) Map the voice assistant stack",
+          description:
+            "The Raspberry Pi acts as the room device, Home Assistant handles the smart-home routing, and the Mac mini acts as the heavier local brain when a question needs more than a simple automation.",
+        },
+        {
+          title: "2) Set up the Raspberry Pi as the satellite",
+          description:
+            "Run the Pi as the always-on voice satellite with openWakeWord listening for the wake phrase and Wyoming satellite sending captured audio back into Home Assistant.",
+        },
+        {
+          title: "3) Keep speech processing local",
+          description:
+            "Use Whisper for speech-to-text and Piper for text-to-speech so the voice loop can stay inside the home network instead of leaning on Siri or another cloud assistant.",
+        },
+        {
+          title: "4) Route commands before questions",
+          description:
+            "Simple commands like turning lights or the TV on and off should be handled directly by Home Assistant. More open-ended questions can be routed to the Mac mini LLM and then spoken back through the Pi.",
+        },
+        {
+          title: "5) Mount the hardware where it can actually hear",
+          description:
+            "The Jabra speakerphone was mounted with a 3D printed Raspberry Pi stand, powered over USB, and placed where it could hear from the kitchen or living room without needing to speak right into it.",
+        },
+        {
+          title: "6) Tune audio, wake word, and latency",
+          description:
+            "The first working version still needed tuning: crackly audio had to be cleaned up, false wake-word triggers had to be reduced, and the LLM voice path still had a long pause compared with direct terminal use.",
+        },
+      ],
+      results: {
+        summary: [
+          "Voice commands could control Home Assistant devices locally.",
+          "The Jabra speakerphone picked up voice clearly from across the room.",
+          "The local LLM path worked, but still had a 20-30 second delay through the full voice pipeline.",
+          "The build reused an M1 Mac mini, Raspberry Pi, Home Assistant, and 3D printed mounting hardware.",
+        ],
+        table: [
+          { Piece: "Raspberry Pi 4", Role: "Voice satellite running wake word and Wyoming satellite" },
+          { Piece: "Home Assistant", Role: "Smart-home routing, speech-to-text, and text-to-speech hub" },
+          { Piece: "Mac mini M1", Role: "Local LLM brain for open-ended questions" },
+          { Piece: "Jabra speakerphone", Role: "Room microphone and speaker" },
+        ],
+      },
+    },
     mistakeLog: [
       {
         title: "The speakerphone worked almost too well",
@@ -356,6 +413,80 @@ export const projects: Project[] = [
     youtube: {
       videoId: "N4EEEwr5T-g",
       title: "I Turned a BC250 into an AI Agent with OpenClaw",
+    },
+    guide: {
+      intro:
+        "This is the BC-250 OpenClaw path from the video: hardware prep first, CachyOS on the board, then OpenClaw installed and tested through Telegram.",
+      prerequisites: [
+        "AMD BC-250 board",
+        "M.2 NVMe SSD",
+        "ATX power supply with a safe PS_ON to GND jumper or switch harness",
+        "120mm fan and 3D printed fan shroud",
+        "CachyOS installed on the BC-250",
+        "Node.js 22 or newer, npm, and internet access",
+        "OpenAI authorization or another supported OpenClaw provider",
+        "Telegram setup if you want to test the agent from a phone",
+      ],
+      steps: [
+        {
+          title: "1) Prep the BC-250 hardware",
+          description:
+            "Cut the top of the stock cooling fins, install the SSD, flash BIOS, install CachyOS, and mount the 120mm fan with the 3D printed shroud so air is forced through the opened fins.",
+        },
+        {
+          title: "2) Power it safely on the bench",
+          description:
+            "Use a PSU jumper or small switch harness to connect PS_ON to ground on the 24-pin ATX connector, then power the board with the oversized bench PSU or your final PSU.",
+        },
+        {
+          title: "3) Install Node.js, npm, and build tools",
+          description:
+            "OpenClaw requires Node.js 22 or newer. On CachyOS/Arch-style systems, install the Node and build tooling before installing OpenClaw.",
+          commands: [
+            { title: "Install Node.js, npm, and build tools", code: "sudo pacman -S nodejs npm git base-devel" },
+            { title: "Verify Node and npm", code: "node --version\nnpm --version" },
+          ],
+        },
+        {
+          title: "4) Install OpenClaw",
+          description:
+            "Install the OpenClaw CLI globally with npm. The video install needed retries, so rerun the install if the first attempt fails without changing anything else.",
+          commands: [
+            { title: "Install OpenClaw CLI", code: "npm install -g openclaw@latest" },
+          ],
+        },
+        {
+          title: "5) Run the OpenClaw quick start",
+          description:
+            "Use the OpenClaw quick start prompts to choose the provider, complete browser authorization, select Telegram, choose Google search, skip skills for the first pass, enable session memory, and reinstall the gateway when prompted.",
+        },
+        {
+          title: "6) Test from Telegram",
+          description:
+            "Ask the agent if it is active, run a search prompt about OpenClaw on the BC-250, then ask it to generate a small proof-of-concept dashboard or code artifact.",
+        },
+        {
+          title: "7) Decide if the BC-250 is worth it",
+          description:
+            "The proof of concept worked, but the video called out the cost tradeoff: once an NVMe drive and other parts are included, a used laptop may be a better dedicated OpenClaw host.",
+        },
+      ],
+      results: {
+        summary: [
+          "CachyOS ran on the BC-250 without major OS trouble.",
+          "OpenClaw installed and worked on the BC-250.",
+          "Telegram control worked from the phone.",
+          "The agent generated and posted a proof-of-concept dashboard.",
+          "The BC-250 is fun and capable, but not automatically the best value for OpenClaw alone.",
+        ],
+        table: [
+          { Check: "CachyOS", Result: "Installed and running" },
+          { Check: "OpenClaw", Result: "Installed after retries" },
+          { Check: "Telegram", Result: "Connected and responding" },
+          { Check: "Proof of concept", Result: "Generated a dashboard and pushed it live" },
+          { Check: "Value call", Result: "Used laptop may be simpler if OpenClaw is the only goal" },
+        ],
+      },
     },
     mistakeLog: [
       {
