@@ -109,6 +109,27 @@ export default async function HomePage() {
                 key={item.title}
                 className="rounded-xl border border-cyan-400/20 bg-black/20 p-4"
               >
+                {item.image ? (
+                  <div className="mb-4 overflow-hidden rounded-lg border border-cyan-300/15 bg-[#080d15]">
+                    <div className="relative aspect-[4/3]">
+                      <Image
+                        src={item.image.src}
+                        alt={item.image.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-contain p-3"
+                      />
+                    </div>
+                    <a
+                      href={item.image.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block border-t border-cyan-300/10 px-3 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-zinc-500 transition hover:text-cyan-200"
+                    >
+                      {item.image.credit}
+                    </a>
+                  </div>
+                ) : null}
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full border border-orange-300/45 bg-orange-400/10 px-3 py-1 font-mono text-xs uppercase tracking-[0.12em] text-orange-100">
                     {item.status}
