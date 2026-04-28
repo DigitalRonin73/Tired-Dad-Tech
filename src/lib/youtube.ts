@@ -33,6 +33,30 @@ function extractHref(xml: string) {
   return match?.[1]?.trim();
 }
 
+function extractLengthSeconds(html: string) {
+  const patterns = [
+    /"lengthSeconds":"(\d+)"/,
+    /"lengthSeconds":(\d+)/,
+    /"duration":"PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?"/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (!match) continue;
+
+    if (pattern.source.includes("duration")) {
+      const hours = Number(match[1] ?? 0);
+      const minutes = Number(match[2] ?? 0);
+      const seconds = Number(match[3] ?? 0);
+      return hours * 3600 + minutes * 60 + seconds;
+    }
+
+    return Number(match[1]);
+  }
+
+  return null;
+}
+
 async function resolveChannelIdFromHandle(handle: string) {
   const clean = handle.startsWith("@") ? handle : `@${handle}`;
   const url = `https://www.youtube.com/${clean}/videos`;
@@ -75,30 +99,27 @@ async function isLongFormVideo(videoId: string): Promise<boolean> {
 
     if (!res.ok) {
       debugLog(`[youtube] isLongFormVideo(${videoId}): fetch failed — ${res.status} ${res.statusText}`);
-      // Fail open so the page still renders something.
-      return true;
+      return false;
     }
 
     const html = await res.text();
 
-    if (html.includes(`https://www.youtube.com/shorts/${videoId}`)) {
+    if (html.includes(`https://www.youtube.com/shorts/${videoId}`) || html.includes(`/shorts/${videoId}`)) {
       debugLog(`[youtube] isLongFormVideo(${videoId}): detected as Short via canonical URL`);
       return false;
     }
 
-    const lengthMatch = html.match(/"lengthSeconds":"(\d+)"/);
-    if (!lengthMatch) {
-      debugLog(`[youtube] isLongFormVideo(${videoId}): lengthSeconds not found in page HTML`);
-      // Fail open.
-      return true;
+    const lengthSeconds = extractLengthSeconds(html);
+    if (lengthSeconds === null) {
+      debugLog(`[youtube] isLongFormVideo(${videoId}): duration not found in page HTML`);
+      return false;
     }
 
-    const lengthSeconds = Number(lengthMatch[1]);
     debugLog(`[youtube] isLongFormVideo(${videoId}): ${lengthSeconds}s (min: ${minSeconds}s)`);
     return lengthSeconds >= minSeconds;
   } catch (err) {
     debugLog(`[youtube] isLongFormVideo(${videoId}): unexpected error: ${String(err)}`);
-    return true;
+    return false;
   }
 }
 
