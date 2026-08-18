@@ -22,18 +22,18 @@ export const nowTesting: NowTestingItem[] = [
     tags: ["3D Printing", "Gemini 3.1 Flash Live", "Robot Body", "Conversation Test"],
   },
   {
-    title: "HBADA E3 Pro Chair Review",
-    status: "Collab Incoming",
+    title: "Jarvis V2",
+    status: "On The Bench",
     summary:
-      "A gifted HBADA E3 Pro is coming into the War Room for a practical desk-chair test: assembly, comfort, adjustability, and whether it holds up during real editing and build nights.",
+      "The next version of my home voice assistant, rebuilt around GPT Real Time 2.5 for a faster, more natural back-and-forth conversation.",
     nextStep:
-      "Unbox it, build it, sit in it for real work sessions, and call out the good, the weird, and anything that feels more showroom than Tired Dad Tech.",
-    tags: ["Collab Gifted", "Desk Setup", "Ergonomics", "Review"],
+      "Finish the voice loop, package the setup, and publish the repo so you can git pull the project, install it, and make your own.",
+    tags: ["GPT Real Time 2.5", "Voice Assistant", "Open Source", "DIY"],
     image: {
-      src: "/images/now-testing/hbada-e3-pro.png",
-      alt: "HBADA E3 Pro ergonomic office chair",
-      credit: "Stock product image from HBADA",
-      sourceUrl: "https://hbada.com/products/hbada-e3-pro-ergonomic-office-chair",
+      src: "/images/projects/jarvis/03.jpg",
+      alt: "Jarvis voice assistant prototype with a speakerphone and Raspberry Pi",
+      credit: "Project photo from the original Jarvis build",
+      sourceUrl: "/vault/jarvis-self-hosted-assistant",
     },
   },
 ];

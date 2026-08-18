@@ -19,6 +19,33 @@ export type PcBuild = {
 // Template-friendly data source. Auto-imported from channel descriptions where possible.
 export const pcBuilds: PcBuild[] = [
   {
+    slug: "aarons-computer",
+    title: "Aaron's Computer",
+    summary:
+      "A clean white AM4 gaming build for Aaron, finished with my first attempt at custom shortened and sleeved PSU cables.",
+    videoUrl: undefined,
+    imageUrls: [
+      "/images/pc-builds/aarons-computer/01.jpg",
+      "/images/pc-builds/aarons-computer/02.jpg",
+      "/images/pc-builds/aarons-computer/03.jpg",
+      "/images/pc-builds/aarons-computer/04.jpg",
+      "/images/pc-builds/aarons-computer/05.jpg",
+      "/images/pc-builds/aarons-computer/06.jpg",
+      "/images/pc-builds/aarons-computer/07.jpg",
+    ],
+    specs: {
+      motherboard: "Not provided",
+      processor: "AMD Ryzen 5 5600X",
+      ram: "32GB DDR4 3200MHz",
+      gpu: "PowerColor Radeon RX 9060 XT 16GB",
+      psu: "Corsair RM750x",
+      case: "OKINOS case",
+      cooler: "Thermalright 240mm AIO",
+      details:
+        "Storage: 1TB NVMe M.2 SSD. The custom PSU cables were shortened and sleeved by hand. It was my first time doing the cable work, and there was plenty learned along the way.",
+    },
+  },
+  {
     slug: "war-room-main-rig",
     title: "War Room Main Rig",
     summary:

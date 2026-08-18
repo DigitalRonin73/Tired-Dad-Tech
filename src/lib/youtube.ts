@@ -6,10 +6,10 @@ type LatestVideo = {
 };
 
 const FALLBACK_LATEST_VIDEO: LatestVideo = {
-  title: "Gemma 4 AI on a $140 BC250 It Got Messy",
-  url: "https://www.youtube.com/watch?v=C4PqnPw-w7E",
-  videoId: "C4PqnPw-w7E",
-  published: "2026-04-21T12:08:02+00:00",
+  title: "Xbox Ally X Review Why It Makes Sense for Dads",
+  url: "https://www.youtube.com/watch?v=I6hSpz65AJQ",
+  videoId: "I6hSpz65AJQ",
+  published: "2026-07-19T20:00:22+00:00",
 };
 
 // A realistic browser UA avoids YouTube returning consent/bot-check pages
