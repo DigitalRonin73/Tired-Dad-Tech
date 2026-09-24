@@ -237,7 +237,7 @@ export default function ProgramList() {
           </div>
           <form onSubmit={submitDoor} className={styles.stack}>
             <label>{kind === 'room' ? 'Room number' : 'Other door description'}
-              <input ref={inputRef} name="door" value={label} disabled={busy} onChange={e => setLabel(e.target.value)} inputMode={kind === 'room' ? 'numeric' : 'text'} pattern={kind === 'room' ? '[0-9]{3}' : undefined} maxLength={kind === 'other' ? 100 : undefined} title={kind === 'room' ? 'Enter exactly 3 digits, such as 112.' : undefined} placeholder={kind === 'room' ? '112' : '3rd deck lounge'} autoComplete="off" required list={kind === 'other' ? 'other-doors' : undefined} aria-describedby="door-hint" />
+              <input ref={inputRef} name="door" value={label} disabled={busy} onChange={e => setLabel(kind === 'room' ? e.target.value.replace(/[^0-9]/g, '').slice(0, 3) : e.target.value)} inputMode={kind === 'room' ? 'numeric' : 'text'} pattern={kind === 'room' ? '[0-9]{3}' : undefined} maxLength={kind === 'other' ? 100 : 3} title={kind === 'room' ? 'Enter exactly 3 digits, such as 112.' : undefined} placeholder={kind === 'room' ? '112' : '3rd deck lounge'} autoComplete="off" required list={kind === 'other' ? 'other-doors' : undefined} aria-describedby="door-hint" />
             </label>
             <p id="door-hint" className={styles.hint}>{kind === 'room' ? 'Exactly 3 digits' : 'Reuse an existing name to keep its history together.'}</p>
             <datalist id="other-doors">{otherDoors.map(d => <option key={d.door_key} value={d.door_label} />)}</datalist>
