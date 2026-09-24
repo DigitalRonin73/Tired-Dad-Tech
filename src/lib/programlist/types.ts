@@ -7,5 +7,5 @@ export type DoorRequest = {
   submitted_at: number; completed_by: string | null; completer: string | null;
   completed_at: number | null;
 };
-export type State = { me: Person; users: Person[]; buildings: Building[] };
+export type State = { me: Person; users: Person[]; buildings: Building[]; completedToday: number };
 export type HistoryResult = { rows: DoorRequest[]; total: number; completedCount: number; pendingCount: number };

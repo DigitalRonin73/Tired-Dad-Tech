@@ -4,20 +4,20 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import type { DoorRequest, HistoryResult, State } from '@/lib/programlist/types';
 import styles from './programlist.module.css';
 
-type Tab = 'pending' | 'history' | 'manage';
-type Filters = { allBuildings: boolean; door: string; kind: string; submittedBy: string; completedBy: string; status: string; dateField: string; from: string; to: string; month: string };
-const initialFilters: Filters = { allBuildings: false, door: '', kind: '', submittedBy: '', completedBy: '', status: 'completed', dateField: 'submitted', from: '', to: '', month: '' };
+type Tab = 'pending' | 'buildings' | 'history' | 'manage';
+type Filters = { allBuildings: boolean; door: string; submittedBy: string; completedBy: string; status: string; dateField: string; from: string; to: string; month: string };
+const initialFilters: Filters = { allBuildings: false, door: '', submittedBy: '', completedBy: '', status: 'completed', dateField: 'submitted', from: '', to: '', month: '' };
 const emptyHistory: HistoryResult = { rows: [], total: 0, completedCount: 0, pendingCount: 0 };
 const roleLabel = { admin: 'Admin', programmer: 'Programmer', member: 'Team member' };
 
-class ApiError extends Error { constructor(message: string, public status: number) { super(message); } }
+class ApiError extends Error { constructor(message: string, public status: number, public recent?: DoorRequest) { super(message); } }
 async function api<T>(path: string, body?: unknown, signal?: AbortSignal): Promise<T> {
   const response = await fetch(`/api/programlist/${path}`, {
     method: body === undefined ? 'GET' : 'POST', credentials: 'same-origin', cache: 'no-store', signal,
     ...(body === undefined ? {} : { headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }),
   });
   const data = await response.json().catch(() => { throw new ApiError('The programming list service is unavailable. Please try again.', response.status); });
-  if (!response.ok) throw new ApiError(data.error || 'Something went wrong. Please try again.', response.status);
+  if (!response.ok) throw new ApiError(data.error || 'Something went wrong. Please try again.', response.status, data.recent);
   return data as T;
 }
 const errorText = (error: unknown) => error instanceof Error ? error.message : 'Could not connect. Please try again.';
@@ -33,7 +33,7 @@ function monthDates(value: string) {
 function historyQuery(building: string, filters: Filters, offset: number) {
   const p = new URLSearchParams({ offset: String(offset), status: filters.status, dateField: filters.dateField });
   if (!filters.allBuildings) p.set('building', building);
-  for (const key of ['door', 'kind', 'submittedBy', 'completedBy'] as const) if (filters[key]) p.set(key, filters[key]);
+  for (const key of ['door', 'submittedBy', 'completedBy'] as const) if (filters[key]) p.set(key, filters[key]);
   if (filters.from) p.set('from', String(new Date(`${filters.from}T00:00:00`).getTime()));
   if (filters.to) {
     const end = new Date(`${filters.to}T00:00:00`); end.setDate(end.getDate() + 1);
@@ -61,6 +61,10 @@ export default function ProgramList() {
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [confirmIds, setConfirmIds] = useState<string[] | null>(null);
+  const [buildingOpen, setBuildingOpen] = useState(false);
+  const [recent, setRecent] = useState<DoorRequest | null>(null);
+  const buildingDialogRef = useRef<HTMLDialogElement>(null);
+  const recentDialogRef = useRef<HTMLDialogElement>(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -68,7 +72,9 @@ export default function ProgramList() {
   const locked = useRef(false);
 
   const refreshState = useCallback(async () => {
-    const next = await api<State>('state');
+    const start = new Date(); start.setHours(0, 0, 0, 0);
+    const end = new Date(start); end.setDate(end.getDate() + 1);
+    const next = await api<State>(`state?dayStart=${start.getTime()}&dayEnd=${end.getTime()}`);
     setState(next);
     setBuilding(current => {
       if (current) return current;
@@ -87,7 +93,7 @@ export default function ProgramList() {
     const load = async () => {
       setLoading(true); setLoadError('');
       try {
-        if (tab === 'pending') {
+        if (tab === 'pending' || tab === 'buildings') {
           const [rows, doors] = await Promise.all([
             api<DoorRequest[]>(`requests?building=${encodeURIComponent(building)}`, undefined, controller.signal),
             api<{ door_key: string; door_label: string }[]>(`doors?building=${encodeURIComponent(building)}`, undefined, controller.signal),
@@ -109,16 +115,25 @@ export default function ProgramList() {
 
   useEffect(() => {
     if (!state) return;
-    const refresh = () => { if (document.visibilityState === 'visible' && !locked.current) setRevision(n => n + 1); };
+    const refresh = () => { if (document.visibilityState === 'visible' && !locked.current) void refreshState().catch(() => { /* Keep the last snapshot during network outages. */ }); };
     const timer = setInterval(refresh, 45000);
     window.addEventListener('focus', refresh);
     return () => { clearInterval(timer); window.removeEventListener('focus', refresh); };
-  }, [state]);
+  }, [state, refreshState]);
 
   useEffect(() => {
     if (confirmIds) confirmationRef.current?.showModal();
     else confirmationRef.current?.close();
   }, [confirmIds]);
+
+  useEffect(() => {
+    if (buildingOpen) buildingDialogRef.current?.showModal();
+    else buildingDialogRef.current?.close();
+  }, [buildingOpen]);
+  useEffect(() => {
+    if (recent) recentDialogRef.current?.showModal();
+    else recentDialogRef.current?.close();
+  }, [recent]);
 
   async function mutate(action: () => Promise<void>) {
     if (locked.current) return;
@@ -149,8 +164,17 @@ export default function ProgramList() {
   }
   async function submitDoor(event: FormEvent) {
     event.preventDefault();
+    await saveDoor();
+  }
+  async function saveDoor(acknowledgedCompletion?: string) {
     await mutate(async () => {
-      const saved = await api<{ label: string }>('requests', { building, kind, label });
+      let saved: { label: string };
+      try { saved = await api<{ label: string }>('requests', { building, kind, label, acknowledgedCompletion }); }
+      catch (error) {
+        if (error instanceof ApiError && error.recent) { setRecent(error.recent); return; }
+        throw error;
+      }
+      setRecent(null);
       setLabel(''); setNotice(`${kind === 'room' ? 'Room ' : ''}${saved.label} added to Building ${buildingName}.`);
       await refreshAfterSave();
     });
@@ -186,13 +210,18 @@ export default function ProgramList() {
         <h1>Programming list</h1>
         <div className={styles.identity}><span>{state.me.name} <span className={styles.muted}>· {roleLabel[state.me.role]}</span></span><button disabled={busy} onClick={() => void mutate(async () => { await api('logout', {}); setState(null); setPending([]); setHistory(emptyHistory); setTab('pending'); setNotice(''); })}>Sign out</button></div>
       </header>
+      <div className={styles.snapshot} aria-label="Programming totals">
+        <div><strong>{state.buildings.reduce((sum, b) => sum + b.pending, 0)}</strong><span>Doors needing programming</span></div>
+        <div><strong>{state.completedToday}</strong><span>Completed today</span></div>
+      </div>
       <nav className={styles.tabs} aria-label="Programming list views">
         <button aria-current={tab === 'pending' ? 'page' : undefined} disabled={busy} onClick={() => changeTab('pending')}>Needs programming</button>
+        <button aria-current={tab === 'buildings' ? 'page' : undefined} disabled={busy} onClick={() => changeTab('buildings')}>All buildings</button>
         <button aria-current={tab === 'history' ? 'page' : undefined} disabled={busy} onClick={() => changeTab('history')}>History</button>
         {state.me.role === 'admin' && <button aria-current={tab === 'manage' ? 'page' : undefined} disabled={busy} onClick={() => changeTab('manage')}>Manage</button>}
       </nav>
       {tab !== 'manage' && <div className={styles.buildingBar}>
-        <label>Building<select aria-label="Building" value={building} disabled={busy} onChange={e => changeBuilding(e.target.value)}>{state.buildings.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>
+        {tab !== 'buildings' && <label>Building<select aria-label="Building" value={building} disabled={busy} onChange={e => changeBuilding(e.target.value)}>{state.buildings.map(b => <option key={b.id} value={b.id}>{b.name}</option>)}</select></label>}
         <button className={styles.quiet} disabled={busy || loading} onClick={() => void mutate(async () => { await refreshState(); setRevision(n => n + 1); })}>{loading ? 'Refreshing…' : 'Refresh'}</button>
       </div>}
       {error && <p className={styles.error} role="alert">{error}</p>}
@@ -228,13 +257,41 @@ export default function ProgramList() {
         </section>
       </div>}
 
+      {tab === 'buildings' && <section aria-labelledby="buildings-heading">
+        <h2 id="buildings-heading">Buildings needing programming</h2>
+        <p className={styles.muted}>Choose a building to see its doors and mark work complete.</p>
+        <div className={styles.buildingGrid}>{state.buildings.filter(b => b.pending > 0).map(b => <button key={b.id} disabled={busy} onClick={() => { changeBuilding(b.id); setLoading(true); setRevision(n => n + 1); setBuildingOpen(true); }}>
+          <strong>Building {b.name}</strong><span>{b.pending} {b.pending === 1 ? 'door' : 'doors'} needing programming</span><span>View doors →</span>
+        </button>)}</div>
+        {!state.buildings.some(b => b.pending) && <div className={styles.empty}><h3>All clear</h3><p>No doors are waiting in any building.</p></div>}
+      </section>}
+      <dialog ref={buildingDialogRef} className={`${styles.dialog} ${styles.buildingDialog}`} aria-labelledby="building-dialog-heading" onCancel={e => { if (busy) e.preventDefault(); else setBuildingOpen(false); }} onClose={() => setBuildingOpen(false)}>
+        <div className={styles.sectionHeader}><h2 id="building-dialog-heading">Building {buildingName}</h2><button disabled={busy} onClick={() => setBuildingOpen(false)}>Close</button></div>
+        <p className={styles.muted}>{loading ? 'Refreshing doors…' : `${pending.length} ${pending.length === 1 ? 'door' : 'doors'} needing programming`}</p>
+        {error && <p className={styles.error} role="alert">{error}</p>}
+        {loadError && <p className={styles.error} role="alert">{loadError}</p>}
+        {notice && <p className={styles.success} role="status">{notice}</p>}
+        <div className={styles.doorList}>{pending.map(row => <article key={row.id} className={styles.doorRow}>
+          <h3>{row.door_label}{row.kind === 'other' && <small>Other door</small>}</h3>
+          <div className={styles.submission}><span>Submitted by {row.submitter}</span><time dateTime={new Date(row.submitted_at).toISOString()}>{date(row.submitted_at)}</time></div>
+          <button className={styles.primary} aria-label={`Mark ${row.door_label} complete`} disabled={busy || loading || !!loadError} onClick={() => void complete([row.id])}>Mark complete</button>
+        </article>)}</div>
+        {!loading && !loadError && !pending.length && <p>All doors in this building are complete.</p>}
+        <div className={styles.dialogActions}><button disabled={busy || loading} onClick={() => void refreshAfterSave()}>Refresh</button><button className={styles.primary} disabled={busy || loading || !!loadError || !pending.length} onClick={() => setConfirmIds(pending.map(r => r.id))}>Complete building</button></div>
+      </dialog>
+      <dialog ref={recentDialogRef} className={styles.dialog} aria-labelledby="recent-heading" onCancel={e => { if (busy) e.preventDefault(); else setRecent(null); }} onClose={() => setRecent(null)}>
+        <h2 id="recent-heading">This door was recently programmed</h2>
+        {recent && <><p><strong>Building {recent.building} · {recent.door_label}</strong> was completed by {recent.completer} on {date(recent.completed_at!)}.</p><p>That was within the last 7 days. If it needs programming again, you can still submit it.</p></>}
+        {error && <p className={styles.error} role="alert">{error}</p>}
+        <div className={styles.dialogActions}><button autoFocus disabled={busy} onClick={() => setRecent(null)}>Go back</button><button className={styles.primary} disabled={busy} onClick={() => recent && void saveDoor(recent.id)}>Submit anyway</button></div>
+      </dialog>
+
       {tab === 'history' && <section aria-labelledby="history-heading">
         <div className={styles.sectionHeader}><div><h2 id="history-heading">Completed / History</h2><p className={styles.muted}>Find a room’s programming log or filter work by person and date.</p></div></div>
         <div className={`${styles.panel} ${styles.filterPanel}`}>
           <label className={styles.check}><input type="checkbox" checked={filters.allBuildings} onChange={e => updateFilters({ allBuildings: e.target.checked })} />Search all buildings</label>
           <div className={styles.filters}>
             <label>Room / other door<input value={filters.door} onChange={e => updateFilters({ door: e.target.value })} placeholder="All doors" /></label>
-            <label>Door type<select value={filters.kind} onChange={e => updateFilters({ kind: e.target.value })}><option value="">All types</option><option value="room">Room number</option><option value="other">Other door</option></select></label>
             <label>Submitted by<select value={filters.submittedBy} onChange={e => updateFilters({ submittedBy: e.target.value })}><option value="">Anyone</option>{state.users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}</select></label>
             <label>Completed by<select value={filters.completedBy} onChange={e => updateFilters({ completedBy: e.target.value })}><option value="">Anyone</option>{state.users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}</select></label>
             <label>Status<select value={filters.status} onChange={e => updateFilters({ status: e.target.value })}><option value="completed">Completed</option><option value="all">All requests</option><option value="pending">Pending</option></select></label>

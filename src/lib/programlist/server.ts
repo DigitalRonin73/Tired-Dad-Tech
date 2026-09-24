@@ -99,11 +99,15 @@ export async function handleRequest({ request, env }: Context): Promise<Response
     const me = await authenticated(request, db);
 
     if (path === 'state' && method === 'GET') {
-      const [users, buildings] = await db.batch([
+      const dayStart = Number(url.searchParams.get('dayStart') ?? new Date().setUTCHours(0, 0, 0, 0));
+      const dayEnd = Number(url.searchParams.get('dayEnd') ?? dayStart + 86400000);
+      if (!Number.isSafeInteger(dayStart) || !Number.isSafeInteger(dayEnd) || dayEnd <= dayStart || dayEnd - dayStart > 90000000) throw new HttpError(400, 'Invalid day range.');
+      const [users, buildings, today] = await db.batch([
         db.prepare('SELECT id, name, role, active FROM users ORDER BY name COLLATE NOCASE'),
         db.prepare('SELECT b.*, (SELECT COUNT(*) FROM requests r WHERE r.building_id = b.id AND r.completed_at IS NULL) AS pending FROM buildings b ORDER BY length(b.name), b.name'),
+        db.prepare('SELECT COUNT(*) AS count FROM requests WHERE completed_at >= ? AND completed_at < ?').bind(dayStart, dayEnd),
       ]);
-      return json({ me, users: users.results, buildings: buildings.results });
+      return json({ me, users: users.results, buildings: buildings.results, completedToday: (today.results[0] as { count: number }).count });
     }
     if (path === 'doors' && method === 'GET') {
       return json((await db.prepare("SELECT door_key, MIN(door_label) AS door_label FROM requests WHERE building_id = ? AND kind = 'other' GROUP BY door_key ORDER BY door_label COLLATE NOCASE").bind(url.searchParams.get('building') || '').all()).results);
@@ -123,6 +127,10 @@ export async function handleRequest({ request, env }: Context): Promise<Response
       const key = normalize(label);
       const existing = await db.prepare('SELECT door_label FROM requests WHERE building_id = ? AND kind = ? AND door_key = ? LIMIT 1').bind(building, kind, key).first<{ door_label: string }>();
       if (existing) label = existing.door_label;
+      const pending = await db.prepare('SELECT id FROM requests WHERE building_id = ? AND kind = ? AND door_key = ? AND completed_at IS NULL').bind(building, kind, key).first();
+      if (pending) throw new HttpError(409, `${kind === 'room' ? 'Room ' : ''}${label} in Building ${b.name} is already on the programming list.`);
+      const recent = await db.prepare(`${selectRequests} WHERE r.building_id = ? AND r.kind = ? AND r.door_key = ? AND r.completed_at >= ? ORDER BY r.completed_at DESC LIMIT 1`).bind(building, kind, key, Date.now() - 7 * 86400000).first();
+      if (recent && body.acknowledgedCompletion !== recent.id) return json({ error: 'This door was programmed within the last 7 days.', recent }, 409);
       const id = crypto.randomUUID();
       const result = await db.prepare('INSERT INTO requests (id, building_id, kind, door_label, door_key, submitted_by, submitted_at) VALUES (?, ?, ?, ?, ?, ?, ?) ON CONFLICT(building_id, kind, door_key) WHERE completed_at IS NULL DO NOTHING')
         .bind(id, building, kind, label, key, me.id, Date.now()).run();

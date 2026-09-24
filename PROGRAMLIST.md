@@ -10,7 +10,7 @@ Standalone app at `/programlist`. No homepage or public navigation link. Page me
 - Each request has its own immutable submitter/time and separate completion actor/time. A partial unique database index allows only one pending request per building/door, including concurrent submissions.
 - Room identifiers are text matching exactly three ASCII digits, preserving leading zeros. Other-door descriptions normalize whitespace/case for duplicate checks and history.
 - Bulk completion acts on the IDs shown when confirmation opens; newly submitted work is not accidentally completed.
-- History pages contain 50 records. Its all-time counts follow building/door/type, independently of date/person/status filters. Date range boundaries come from the browser's local timezone; the through-date is inclusive.
+- History pages contain 50 records. Its all-time counts follow building/door, independently of date/person/status filters. Date range boundaries come from the browser's local timezone; the through-date is inclusive.
 - Passwords use salted PBKDF2-SHA256. Sessions use random tokens stored only as hashes, HttpOnly cookies, SameSite=Strict and Secure on HTTPS. All POST requests require same-origin JSON. Login failures are rate limited in D1.
 
 ## Local development
@@ -67,3 +67,11 @@ pnpm exec wrangler d1 migrations apply tireddadtech-programlist --remote --confi
 Manage lets Scott add buildings/users, assign programmer labels, deactivate/reactivate accounts and reset passwords. Deactivated users remain in history. Password resets invalidate sessions. There is no public account registration, password recovery email, deletion or editing of historical submissions in this first version.
 
 Refreshing the list or switching views does not reset the building. Browser storage remembers the most recently selected building across page loads. The list refreshes when the window regains focus and every 45 seconds while visible. Submissions and completions refresh immediately without page navigation.
+
+
+## Programmer overview and repeat warnings
+
+- All buildings shows only buildings with pending doors and opens their checklist in a modal. Complete building confirms an exact snapshot of the displayed IDs; individual completions leave the modal open.
+- Header totals show pending doors across every building and completions in the browser's current local calendar day (inclusive midnight, exclusive next midnight). Counts refresh after writes, on window focus, and every 45 seconds while visible, including date rollover.
+- New submissions check the latest completion for that same building, door type and normalized door name within the preceding 168 hours. The server returns the completion details before inserting. Submit anyway acknowledges that specific completion ID; a newer completion requires a fresh warning. Pending duplicates still take precedence and cannot be overridden.
+- History no longer exposes a door-type filter. Existing records and history remain unchanged.

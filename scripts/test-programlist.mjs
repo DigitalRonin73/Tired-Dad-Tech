@@ -56,7 +56,18 @@ try {
   check((await call('complete', { building: '2442', ids: [room.id] }, admin)).body.completed === 0, 'Repeated completion does not replace completer');
   let history = (await call('history?building=2442&door=112', undefined, admin)).body;
   check(history.total === 1 && history.completedCount === 1 && history.rows[0].completer === 'Erin' && history.rows[0].submitted_at === originalTime, 'Log preserves submitter, completer and dates');
-  check((await call('requests', { building: '2442', kind: 'room', label: '112' }, second)).status === 201, 'Completed room may be recreated');
+  const warning = await call('requests', { building: '2442', kind: 'room', label: '112' }, second);
+  check(warning.status === 409 && warning.body.recent.id === room.id && warning.body.recent.completer === 'Erin', 'Recent completion warns with attribution');
+  check((await call('requests?building=2442', undefined, admin)).body.length === 0, 'Warning creates no pending submission');
+  check((await call('requests', { building: '2442', kind: 'room', label: '112', acknowledgedCompletion: 'wrong-id' }, second)).status === 409, 'Acknowledgement must match latest completion');
+  check((await call('requests', { building: '2442', kind: 'room', label: '112', acknowledgedCompletion: room.id }, second)).status === 201, 'Acknowledged completed room may be recreated');
+  const duplicateRecent = await call('requests', { building: '2442', kind: 'room', label: '112' }, second);
+  check(duplicateRecent.status === 409 && !duplicateRecent.body.recent, 'Pending duplicate takes precedence over recent completion');
+  const now = Date.now();
+  let snapshot = (await call(`state?dayStart=${now - 60000}&dayEnd=${now + 60000}`, undefined, admin)).body;
+  check(snapshot.completedToday === 1 && snapshot.buildings.find(b => b.id === '2442').pending === 1, 'Snapshot counts completed and pending separately');
+  check((await call(`state?dayStart=${now + 60000}&dayEnd=${now + 120000}`, undefined, admin)).body.completedToday === 0, 'Snapshot honors supplied local day bounds');
+  check((await call('state?dayStart=invalid&dayEnd=1', undefined, admin)).status === 400, 'Invalid day bounds rejected');
   history = (await call('history?building=2442&door=112&status=all', undefined, admin)).body;
   check(history.total === 2 && history.completedCount === 1 && history.pendingCount === 1, 'Pending does not inflate times-programmed count');
   history = (await call('history?building=2442&door=112&submittedBy=second', undefined, admin)).body;
@@ -75,6 +86,17 @@ try {
   check((await call('requests?building=2442', undefined, admin)).body[0].id === late.id, 'Work added after confirmation stays pending');
   history = (await call('history?building=2442&door=112', undefined, admin)).body;
   check(history.completedCount === 2 && history.total === 2, 'Recreated room has two separate completions in log');
+  const oldTime = Date.now() - 8 * 86400000;
+  await db.prepare('INSERT INTO requests (id, building_id, kind, door_label, door_key, submitted_by, submitted_at, completed_by, completed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)').bind('old-door', '2446', 'room', '123', '123', 'member', oldTime, 'admin', oldTime).run();
+  check((await call('requests', { building: '2446', kind: 'room', label: '123' }, admin)).status === 201, 'Completion older than seven days needs no warning');
+  const loungeWarning = await call('requests', { building: '2442', kind: 'other', label: '  3RD deck LOUNGE ' }, admin);
+  check(loungeWarning.status === 409 && loungeWarning.body.recent.door_label === '3rd Deck Lounge', 'Recent warning normalizes other-door names');
+  snapshot = (await call('state', undefined, admin)).body;
+  check(snapshot.buildings.filter(b => b.pending > 0).length === 3 && snapshot.buildings.reduce((sum, b) => sum + b.pending, 0) === 3, 'All-building snapshot includes only outstanding work across buildings');
+  const boundary = Date.now() - 10000;
+  await db.prepare('UPDATE requests SET completed_at = ? WHERE id = ?').bind(boundary, 'old-door').run();
+  check((await call(`state?dayStart=${boundary}&dayEnd=${boundary + 1}`, undefined, admin)).body.completedToday === 1, 'Day start is inclusive');
+  check((await call(`state?dayStart=${boundary - 1}&dayEnd=${boundary}`, undefined, admin)).body.completedToday === 0, 'Day end is exclusive');
   // Exercise batch parameter limits and history pagination with realistic longer-lived data.
   const inserts = Array.from({ length: 110 }, (_, i) => db.prepare('INSERT INTO requests (id, building_id, kind, door_label, door_key, submitted_by, submitted_at) VALUES (?, ?, ?, ?, ?, ?, ?)').bind(`bulk-${i}`, '2445', 'room', String(i + 400), String(i + 400), 'member', Date.now()));
   await db.batch(inserts);
