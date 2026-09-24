@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
+import SiteNavigation from "@/components/SiteNavigation";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,22 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className="relative z-40 mx-auto w-full bg-[#070b12]/95 px-2 py-3 backdrop-blur sm:px-4">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <Link className="nav-pill nav-pill-strong" href="/vault">
-              <span>Projects</span>
-            </Link>
-            <Link className="nav-pill nav-pill-strong" href="/pc-builds">
-              <span>Builds</span>
-            </Link>
-            <Link className="nav-pill nav-pill-strong" href="/linux-lab">
-              <span>Linux &amp; Homelab</span>
-            </Link>
-            <Link className="nav-pill nav-pill-strong" href="/war-room">
-              <span>About</span>
-            </Link>
-          </div>
-        </nav>
+        <SiteNavigation />
         {children}
       </body>
     </html>

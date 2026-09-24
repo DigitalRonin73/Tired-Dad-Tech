@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "programlist:dev": "wrangler pages dev out --d1 PROGRAMLIST_DB=local-only --compatibility-date=2026-09-24 --ip 127.0.0.1 --port 8788",
+    "programlist:migrate": "wrangler d1 migrations apply programlist-local --local --config wrangler.local.jsonc",
+    "programlist:seed": "python3 scripts/programlist-seed.py",
+    "programlist:test": "wrangler pages functions build --outdir=.programlist-local/test-worker && node scripts/test-programlist.mjs"
   },
   "dependencies": {
     "next": "16.1.6",
@@ -14,13 +18,16 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260924.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "miniflare": "5.20260921.0-alpha",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.137.0"
   }
 }

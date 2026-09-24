@@ -1,0 +1,13 @@
+// Local development ONLY. Production uses the existing Pages project's dashboard bindings.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "programlist-local",
+  "pages_build_output_dir": "out",
+  "compatibility_date": "2026-09-24",
+  "d1_databases": [{
+    "binding": "PROGRAMLIST_DB",
+    "database_name": "programlist-local",
+    "database_id": "local-only",
+    "migrations_dir": "migrations"
+  }]
+}
