@@ -204,6 +204,13 @@ export default function ProgramList() {
     </div>
   </main>;
 
+  const buildingCards = <>
+        <div className={styles.buildingGrid}>{state.buildings.filter(b => b.pending > 0).map(b => <button key={b.id} disabled={busy} onClick={() => { changeBuilding(b.id); setLoading(true); setRevision(n => n + 1); setBuildingOpen(true); }}>
+          <strong>Building {b.name}</strong><span>{b.pending} {b.pending === 1 ? 'door' : 'doors'} needing programming</span><span>View doors →</span>
+        </button>)}</div>
+        {!state.buildings.some(b => b.pending) && <div className={styles.empty}><h3>All clear</h3><p>No doors are waiting in any building.</p></div>}
+  </>;
+
   return <main className={styles.app}>
     <div className={styles.shell}>
       <header className={styles.header}>
@@ -244,26 +251,17 @@ export default function ProgramList() {
             <button className={styles.primary} disabled={busy || !building}>{busy ? 'Saving…' : kind === 'room' ? 'Submit room' : 'Submit door'}</button>
           </form>
         </section>
-        <section className={styles.panel} aria-labelledby="pending-heading" aria-busy={loading}>
-          <div className={styles.sectionHeader}><h2 id="pending-heading">Needs programming</h2><button className={styles.primary} disabled={busy || loading || !pending.length || !!loadError} onClick={() => setConfirmIds(pending.map(r => r.id))}>Complete all</button></div>
-          {!pending.length ? <div className={styles.empty}><h3>{loading ? 'Loading doors…' : loadError ? 'List unavailable' : 'All clear'}</h3><p>{loading ? 'Getting the latest programming list.' : loadError ? 'Use Refresh to try again.' : `No doors are waiting for programming in Building ${buildingName}.`}</p></div> : <div className={styles.doorList}>
-            {pending.map(row => <article key={row.id} className={styles.doorRow}>
-              <h3>{row.door_label}{row.kind === 'other' && <small>Other door</small>}</h3>
-              <div className={styles.submission}><span className={styles.muted}>Submitted by</span><span>{row.submitter} · <time dateTime={new Date(row.submitted_at).toISOString()}>{date(row.submitted_at)}</time></span></div>
-              <button className={styles.primary} aria-label={`Mark ${row.door_label} complete`} disabled={busy || loading || !!loadError} onClick={() => void complete([row.id])}>Mark complete</button>
-            </article>)}
-          </div>}
-          <p className={styles.footnote}>Each door is a separate submission.</p>
+        <section className={styles.panel} aria-labelledby="pending-heading">
+          <h2 id="pending-heading">Needs programming</h2>
+          <p className={styles.muted}>Choose a building to see its doors and mark work complete.</p>
+          {buildingCards}
         </section>
       </div>}
 
       {tab === 'buildings' && <section aria-labelledby="buildings-heading">
         <h2 id="buildings-heading">Buildings needing programming</h2>
         <p className={styles.muted}>Choose a building to see its doors and mark work complete.</p>
-        <div className={styles.buildingGrid}>{state.buildings.filter(b => b.pending > 0).map(b => <button key={b.id} disabled={busy} onClick={() => { changeBuilding(b.id); setLoading(true); setRevision(n => n + 1); setBuildingOpen(true); }}>
-          <strong>Building {b.name}</strong><span>{b.pending} {b.pending === 1 ? 'door' : 'doors'} needing programming</span><span>View doors →</span>
-        </button>)}</div>
-        {!state.buildings.some(b => b.pending) && <div className={styles.empty}><h3>All clear</h3><p>No doors are waiting in any building.</p></div>}
+        {buildingCards}
       </section>}
       <dialog ref={buildingDialogRef} className={`${styles.dialog} ${styles.buildingDialog}`} aria-labelledby="building-dialog-heading" onCancel={e => { if (busy) e.preventDefault(); else setBuildingOpen(false); }} onClose={() => setBuildingOpen(false)}>
         <div className={styles.sectionHeader}><h2 id="building-dialog-heading">Building {buildingName}</h2><button disabled={busy} onClick={() => setBuildingOpen(false)}>Close</button></div>
