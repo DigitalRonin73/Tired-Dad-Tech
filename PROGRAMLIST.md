@@ -56,6 +56,12 @@ After approval to change the site's Cloudflare setup:
 
 Cloudflare reference: [Pages D1 bindings](https://developers.cloudflare.com/pages/functions/bindings/#d1-databases).
 
+Production database configuration is recorded in `wrangler.programlist.jsonc`. The dedicated database is `tireddadtech-programlist`; the existing `tired-dad-tech` Pages project uses it through the production-only `PROGRAMLIST_DB` binding. Preview bindings remain separate. For subsequent reviewed migrations, run:
+
+```sh
+pnpm exec wrangler d1 migrations apply tireddadtech-programlist --remote --config wrangler.programlist.jsonc
+```
+
 ## Operation
 
 Manage lets Scott add buildings/users, assign programmer labels, deactivate/reactivate accounts and reset passwords. Deactivated users remain in history. Password resets invalidate sessions. There is no public account registration, password recovery email, deletion or editing of historical submissions in this first version.

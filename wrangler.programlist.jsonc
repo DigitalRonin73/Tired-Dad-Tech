@@ -1,0 +1,13 @@
+// Explicit config for database administration only.
+// Pages deployment settings and its production binding remain in the existing dashboard project.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tired-dad-tech",
+  "compatibility_date": "2026-09-24",
+  "d1_databases": [{
+    "binding": "PROGRAMLIST_DB",
+    "database_name": "tireddadtech-programlist",
+    "database_id": "6236c165-53c2-4435-8225-0e70f1fd7803",
+    "migrations_dir": "migrations"
+  }]
+}
