@@ -48,9 +48,10 @@ export const storeProducts: StoreProduct[] = [
     colors: darkColors, placeholder: "404",
   },
   {
-    ...defaults, id: "tdt-mug", name: "Tired Dad Tech Mug", category: "Mugs", productType: "Coffee mug",
-    description: "Build It. Break It. Figure It Out. Refill as needed.",
+    ...defaults, id: "tdt-mug", name: "Tired Dad Tech 15oz Coffee Mug", category: "Mugs", productType: "15oz coffee mug",
+    description: "A black 15oz mug with the Tired Dad Tech design. For coffee refills between builds.",
     colors: [darkColors[0]], placeholder: "TIRED DAD TECH",
+    image: { src: "/images/store/tired-dad-tech-15oz-mug.png", alt: "Black 15oz coffee mug with a cyan and white Tired Dad Tech design and handle on the right" },
   },
   {
     ...defaults, id: "linux-design", name: "From the terminal", category: "T-Shirts", productType: "T-shirt · design in progress",
