@@ -13,6 +13,7 @@ export default function SiteNavigation() {
         <Link className="nav-pill nav-pill-strong" href="/pc-builds"><span>Builds</span></Link>
         <Link className="nav-pill nav-pill-strong" href="/linux-lab"><span>Linux &amp; Homelab</span></Link>
         <Link className="nav-pill nav-pill-strong" href="/war-room"><span>About</span></Link>
+        <Link className="nav-pill nav-pill-strong" href="/store" aria-current={pathname === '/store' ? 'page' : undefined}><span>Store</span></Link>
       </div>
     </nav>
   );
