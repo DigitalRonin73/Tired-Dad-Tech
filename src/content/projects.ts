@@ -11,6 +11,9 @@ export type Project = {
   publishedAt: string;
   body: string[];
   imageUrls?: string[];
+  materialNote?: { title: string; description: string };
+  modelDownload?: { url: string; label: string };
+  directDownload?: { url: string; filename: string; bytes: number };
   youtube?: {
     videoId: string;
     title: string;
@@ -43,6 +46,74 @@ export type Project = {
 
 // Easy to edit later: add, remove, or update project objects here.
 export const projects: Project[] = [
+  {
+    slug: "9060xt-custom-shroud",
+    imageUrls: [
+      "/images/projects/9060xt-custom-shroud/01.jpg",
+      "/images/projects/9060xt-custom-shroud/02.jpg",
+    ],
+    directDownload: {
+      url: "/downloads/9060xt/9060xt-fan-shroud-25mm-fans.3mf",
+      filename: "9060xt fan shroud 25mm fans.3mf",
+      bytes: 106106,
+    },
+    modelDownload: {
+      url: "https://makerworld.com/en/models/3406465-powercolor-9060xt-fan-shroud-mod-25mm-fans#profileId-3879373",
+      label: "Download on MakerWorld",
+    },
+    title: "9060XT Custom Shroud",
+    category: "Project",
+    status: "Completed",
+    buildType: "PC Build",
+    outcome: "A broken GPU shroud replaced with a FreeCAD design printed in PETG HS.",
+    summary:
+      "Repairing a PowerColor Reaper RX 9060 XT 16GB with a custom printed shroud and Noctua fans. The repair came first; lower reported temperatures were a bonus.",
+    stack: ["RX 9060 XT 16GB", "FreeCAD", "PETG HS", "Noctua NF-A9 PWM chromax"],
+    publishedAt: "2026-10-07",
+    materialNote: {
+      title: "PETG at minimum is HIGHLY recommended.",
+      description:
+        "This build used PETG HS. Do not use PLA for an in-service GPU shroud. Material choice alone does not guarantee heat safety or fit: check the printed part, mounting, clearances, and temperatures in your own system.",
+    },
+    body: [
+      "The original shroud on my PowerColor Reaper RX 9060 XT 16GB was broken. I designed a replacement in FreeCAD and printed it in PETG HS to put the card back into service.",
+      "The replacement uses Noctua NF-A9 PWM chromax fans, measuring 92 × 25 mm. This page documents that specific card and fan combination; it is not a universal RX 9060 XT fit claim.",
+      "The goal was to repair the broken shroud. My reported readings also dropped by 4 °C for both GPU temperature and hotspot temperature, which was a welcome bonus.",
+    ],
+    guide: {
+      intro: "Build overview and fit notes for this repair.",
+      prerequisites: [
+        "PowerColor Reaper RX 9060 XT 16GB",
+        "FreeCAD for the replacement design",
+        "PETG HS filament used in this build",
+        "Noctua NF-A9 PWM chromax fans, 92 × 25 mm",
+      ],
+      steps: [
+        {
+          title: "Repair the broken shroud",
+          description: "The replacement was designed in FreeCAD around this card and the 25 mm thick fans, then printed in PETG HS. Confirm the exact card and fan dimensions before adapting the design.",
+        },
+        {
+          title: "Check fit before running the card",
+          description: "With power off, check that the shroud is secure, fan blades turn freely, and cables stay clear of the fans and hot components. Confirm clearance inside your case. If adapting fan wiring, verify connector pinout and polarity with power off.",
+        },
+        {
+          title: "Monitor the repair under load",
+          description: "Check fan operation and monitor GPU and hotspot temperatures in your own system. Inspect the printed part for movement or deformation after heat exposure; filament choice does not replace those checks.",
+        },
+      ],
+      results: {
+        summary: [
+          "Scott-reported readings from this build: GPU 83 → 79 °C; hotspot 93 → 89 °C.",
+          "Both readings decreased by 4 °C. Ambient temperature, workload, RPM, and noise controls were not documented, so these are build observations rather than a controlled comparison or a promised improvement.",
+        ],
+        table: [
+          { Reading: "GPU", Before: "83 °C", After: "79 °C", Change: "−4 °C" },
+          { Reading: "Hotspot", Before: "93 °C", After: "89 °C", Change: "−4 °C" },
+        ],
+      },
+    },
+  },
   {
     slug: "running-gemma-4-on-amd-bc250-with-ollama",
     title: "Running Gemma 4 on an AMD BC-250 with Ollama",

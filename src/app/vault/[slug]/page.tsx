@@ -62,6 +62,41 @@ export default async function ProjectDetailPage({ params }: Props) {
           ))}
         </div>
 
+        {project.materialNote ? (
+          <aside className="mt-8 rounded-xl border border-orange-400/50 bg-orange-950/30 p-5">
+            <h2 className="text-xl font-semibold text-orange-100">{project.materialNote.title}</h2>
+            <p className="mt-3 leading-7 text-zinc-300">{project.materialNote.description}</p>
+          </aside>
+        ) : null}
+
+        {project.directDownload ? (
+          <div className="mt-6">
+            <a
+              href={project.directDownload.url}
+              download={project.directDownload.filename}
+              className="inline-flex rounded-lg border border-cyan-300/40 bg-cyan-400/15 px-5 py-3 font-semibold text-cyan-100 transition hover:bg-cyan-400/25"
+            >
+              Download 3MF
+            </a>
+            <p className="mt-2 text-sm text-zinc-400">
+              25 mm fan shroud · 3MF · {project.directDownload.bytes.toLocaleString("en-US")} bytes
+            </p>
+          </div>
+        ) : null}
+
+        {project.modelDownload ? (
+          <div className="mt-6">
+            <a
+              href={project.modelDownload.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex rounded-lg border border-cyan-300/40 bg-cyan-400/15 px-5 py-3 font-semibold text-cyan-100 transition hover:bg-cyan-400/25"
+            >
+              {project.modelDownload.label} ↗
+            </a>
+          </div>
+        ) : null}
+
         {project.imageUrls?.length ? (
           <section className="mt-10 rounded-2xl border border-cyan-400/20 bg-[#0a1220] p-6">
             <h2 className="text-2xl font-semibold">Project Gallery</h2>
