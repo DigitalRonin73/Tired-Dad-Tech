@@ -48,6 +48,10 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "9060xt-custom-shroud",
+    youtube: {
+      videoId: "4B3N23L8ZqI",
+      title: "I Fixed My RX 9060 XT With a 3D Printer",
+    },
     imageUrls: [
       "/images/projects/9060xt-custom-shroud/01.jpg",
       "/images/projects/9060xt-custom-shroud/02.jpg",
