@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content/projects";
 import { nowTesting } from "@/content/now-testing";
+import LatestYouTubeVideo from "@/components/LatestYouTubeVideo";
 import { getLatestYouTubeVideo } from "@/lib/youtube";
 
 export const metadata: Metadata = {
@@ -171,20 +172,7 @@ export default async function HomePage() {
             Visit the channel →
           </a>
         </div>
-        {latestVideo?.videoId && (
-          <>
-            <div className="aspect-video overflow-hidden rounded-xl border border-cyan-300/20 bg-black/40 shadow-2xl shadow-cyan-950/30">
-              <iframe
-                className="h-full w-full"
-                src={`https://www.youtube.com/embed/${latestVideo.videoId}`}
-                title={latestVideo.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-            <p className="mt-3 text-lg font-medium">{latestVideo.title}</p>
-          </>
-        )}
+        <LatestYouTubeVideo initialVideo={latestVideo} />
       </section>
 
       <section className="reveal-section reveal-delay-3 mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16">
