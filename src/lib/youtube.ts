@@ -6,10 +6,10 @@ type LatestVideo = {
 };
 
 const FALLBACK_LATEST_VIDEO: LatestVideo = {
-  title: "Xbox Ally X Review Why It Makes Sense for Dads",
-  url: "https://www.youtube.com/watch?v=I6hSpz65AJQ",
-  videoId: "I6hSpz65AJQ",
-  published: "2026-07-19T20:00:22+00:00",
+  title: "I Turned a Gaming PC Into a 4K Console",
+  url: "https://www.youtube.com/watch?v=0hBbb16Wsog",
+  videoId: "0hBbb16Wsog",
+  published: "2026-11-08T21:00:14Z",
 };
 
 // A realistic browser UA avoids YouTube returning consent/bot-check pages
@@ -171,6 +171,16 @@ export async function getLatestYouTubeVideo(): Promise<LatestVideo | null> {
 
         if (!videoId && !url) {
           debugLog(`[youtube] getLatestYouTubeVideo: skipping entry with no videoId or url`);
+          continue;
+        }
+
+        // Static exports resolve this at build time. Keep the verified public
+        // upload if YouTube serves a stale feed or cannot expose its duration.
+        if (videoId === FALLBACK_LATEST_VIDEO.videoId) {
+          return FALLBACK_LATEST_VIDEO;
+        }
+        const publishedAt = Date.parse(published);
+        if (!Number.isFinite(publishedAt) || publishedAt <= Date.parse(FALLBACK_LATEST_VIDEO.published)) {
           continue;
         }
 
